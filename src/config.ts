@@ -12,7 +12,7 @@ export const siteConfig = {
       description:
         "tbd",
       // link: "",
-      skills: ["React", "Node.js", "AWS"],
+      skills: ["tbd"],
     }
   ],
 
