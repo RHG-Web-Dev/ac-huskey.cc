@@ -26,20 +26,22 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Clean previous build
+      - name: Clean previous dist
         run: rm -rf dist
 
       - name: Build Astro site
         run: npm run build
 
-      - name: Verify dist folder
+      - name: Verify and sanitize dist
         run: |
-          echo "Listing contents of dist/"
-          ls -la dist
-          echo "Checking for symlinks..."
-          find dist -type l && echo "Found symlinks! Removing them..." || echo "No symlinks detected."
-          # Optional: remove any symlinks if found
+          echo "Removing symlinks..."
           find dist -type l -exec rm -f {} \;
+          echo "Removing hidden files..."
+          find dist -name ".*" -type f -exec rm -f {} \;
+          echo "Listing dist contents:"
+          ls -la dist
+          echo "Total dist size:"
+          du -sh dist
 
       - name: Upload artifact for Pages
         uses: actions/upload-artifact@v4
