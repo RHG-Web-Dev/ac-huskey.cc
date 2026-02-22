@@ -1,4 +1,4 @@
-name: Deploy Astro to GitHub Pages
+name: Deploy Astro to GitHub Pages (Custom Subdomain)
 
 on:
   push:
@@ -14,17 +14,20 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      # Checkout repo
       - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v3
+      # Build with Astro
+      - uses: withastro/action@v5
         with:
           node-version: 20
-          cache: "npm"
+          cache: npm
 
-      - run: npm install
+      # Disable Jekyll
+      - name: Disable Jekyll
+        run: touch dist/.nojekyll
 
-      - run: npm run build
-
+      # Deploy to GitHub Pages
       - uses: actions/deploy-pages@v4
         with:
           folder: dist
