@@ -20,6 +20,12 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v5
+
+      - name: Disable Jekyll on GitHub Pages
+        run: |
+          mkdir -p public
+          touch public/.nojekyll
+
       - name: Install, build, and upload your site output
         uses: withastro/action@v5
         # with:

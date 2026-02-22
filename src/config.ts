@@ -31,7 +31,7 @@ export const siteConfig = {
     },
   ],
 
-	backgrounds: {
+	backgrounds: { // IDs of images on Unsplash
     default: "1631677209832-e9dd6aec3697",
     summer: [
       "1541843713287-e0d5de49a384",
@@ -54,4 +54,10 @@ export const siteConfig = {
       "1548438444-275b68ae5120",
     ],
   },
+
+	navBar: [
+		{ name: "Home", link: "/" },
+		{ name: "Projects", link: "#projects" },
+		{ name: "About", link: "#about" },
+	],
 };
