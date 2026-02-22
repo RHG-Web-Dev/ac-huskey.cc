@@ -56,8 +56,7 @@ export const siteConfig = {
   },
 
 	navBar: [
-		{ name: "Home", link: "/" },
-		{ name: "Projects", link: "#projects" },
 		{ name: "About", link: "#about" },
+		{ name: "Projects", link: "#projects" },
 	],
 };
