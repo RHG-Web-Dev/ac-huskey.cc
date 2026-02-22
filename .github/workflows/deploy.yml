@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
+
     steps:
       # 1️⃣ Checkout repo
       - uses: actions/checkout@v5
@@ -29,9 +30,9 @@ jobs:
       - name: Disable Jekyll
         run: touch dist/.nojekyll
 
-      # 5️⃣ Upload dist/ as artifact
+      # 5️⃣ Upload dist/ as artifact (use latest v4)
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: site
           path: dist
