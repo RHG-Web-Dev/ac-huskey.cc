@@ -1,74 +1,107 @@
 ---
 import { siteConfig } from "../config";
-
-const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
-const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
-const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 ---
 
 <header
   id="header"
-  class="fixed top-0 left-0 right-0 z-50 hidden md:block transition-all duration-300"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
 >
-  <nav class="max-w-7xl mx-auto px-8 py-4">
-    <ul class="flex items-center gap-8 justify-center">
+  <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center">
+
+    <!-- Logo -->
+    <a href="/" class="flex items-center">
+      <img src="/favicon.svg" alt="Logo" class="h-8 w-8 object-contain" />
+    </a>
+
+    <!-- Desktop Links -->
+    <ul class="hidden md:flex items-center gap-8 mx-auto">
       <li>
-        <a
-          href="#about"
-          class="text-gray-200 hover:text-gray-400 transition-colors font-medium"
-        >
+        <a href="#about" class="text-gray-200 hover:text-gray-400 transition-colors font-medium">
           About
         </a>
       </li>
-      {
-        hasProjects && (
-          <li>
-            <a
-              href="#projects"
-              class="text-gray-200 hover:text-gray-400 transition-colors font-medium"
-            >
-              Projects
-            </a>
-          </li>
-        )
-      }
-      {
-        hasExperience && (
-          <li>
-            <a
-              href="#experience"
-              class="text-gray-200 hover:text-gray-400 transition-colors font-medium"
-            >
-              Experience
-            </a>
-          </li>
-        )
-      }
-      {
-        hasEducation && (
-          <li>
-            <a
-              href="#education"
-              class="text-gray-200 hover:text-gray-400 transition-colors font-medium"
-            >
-              Education
-            </a>
-          </li>
-        )
-      }
-			<li>
-            <a
-              href="https://connect.huskey.cc"
-              class="text-gray-200 hover:text-gray-400 transition-colors font-medium"
-            >
-              Connect
-            </a>
-          </li>
+      <li>
+        <a href="#projects" class="text-gray-200 hover:text-gray-400 transition-colors font-medium">
+          Projects
+        </a>
+      </li>
+      <li>
+        <a href="#experience" class="text-gray-200 hover:text-gray-400 transition-colors font-medium">
+          Experience
+        </a>
+      </li>
+      <li>
+        <a href="#education" class="text-gray-200 hover:text-gray-400 transition-colors font-medium">
+          Education
+        </a>
+      </li>
     </ul>
+
+    <!-- Desktop Connect Button -->
+    <a
+      href="https://connect.huskey.cc"
+      class="hidden md:inline-block ml-auto px-4 py-2 rounded-lg bg-white/30 hover:bg-white/20 text-gray-100 transition backdrop-blur-sm"
+    >
+      Connect
+    </a>
+
+    <!-- Mobile Hamburger -->
+    <button
+      id="menu-btn"
+      class="md:hidden ml-auto text-gray-200 text-2xl"
+      aria-label="Toggle menu"
+    >
+      ☰
+    </button>
+
   </nav>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden bg-gray-900/95 backdrop-blur-md"
+  >
+    <ul class="flex flex-col px-6 py-6 gap-6">
+      <li>
+        <a href="#about" class="text-gray-200 hover:text-gray-400 transition-colors font-medium">
+          About
+        </a>
+      </li>
+      <li>
+        <a href="#projects" class="text-gray-200 hover:text-gray-400 transition-colors font-medium">
+          Projects
+        </a>
+      </li>
+      <li>
+        <a href="#experience" class="text-gray-200 hover:text-gray-400 transition-colors font-medium">
+          Experience
+        </a>
+      </li>
+      <li>
+        <a href="#education" class="text-gray-200 hover:text-gray-400 transition-colors font-medium">
+          Education
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://connect.huskey.cc"
+          class="block px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-gray-200 transition"
+        >
+          Connect
+        </a>
+      </li>
+    </ul>
+  </div>
 </header>
 
 <script>
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  menuBtn?.addEventListener("click", () => {
+    mobileMenu?.classList.toggle("hidden");
+  });
+
   window.addEventListener("scroll", () => {
     const header = document.getElementById("header");
     if (window.scrollY > 100) {
