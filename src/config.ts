@@ -2,33 +2,18 @@ export const siteConfig = {
   name: "Rusty Huskey",
   title: "Computer IT Networking Graduate",
   description: "Portfolio website of Rusty",
-  accentColor: "#ff6e5c",
   aboutMe:
     "tbd",
-  skills: ["Javascript", "React", "Node.js", "Python", "AWS", "Docker"],
+  skills: ["To do"],
 
   projects: [
     {
-      name: "AI Dev Roundup Newsletter",
+      name: "WS Hopper Server",
       description:
-        "One concise email. Five minutes. Every Tuesday. Essential AI news & trends, production-ready libraries, powerful AI tools, and real-world code examples",
-      link: "https://aidevroundup.com/?ref=devportfolio",
+        "tbd",
+      // link: "",
       skills: ["React", "Node.js", "AWS"],
-    },
-    {
-      name: "Chrome Extension Mastery: Build Full-Stack Extensions with React & Node.js",
-      description:
-        "Master the art of building production-ready, full-stack Chrome Extensions using modern web technologies and best practices",
-      link: "https://fullstackextensions.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
-    },
-    {
-      name: "ExtensionKit",
-      description:
-        "Kit to jump-start your Chrome extension projects with a variety of battle-tested starter templates & examples",
-      link: "https://extensionkit.io/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
-    },
+    }
   ],
 
 	backgrounds: { // IDs of images on Unsplash

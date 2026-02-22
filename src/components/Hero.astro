@@ -5,20 +5,19 @@ import { siteConfig } from "../config";
 <div
   id="hero"
   class="relative isolate overflow-hidden py-24 md:h-screen"
-  style={`--accent-color: ${siteConfig.accentColor}`}
 >
   <!-- Gradient overlay -->
   <svg
     aria-hidden="true"
-    class="absolute inset-0 -z-10 size-full stroke-gray-200 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
+    class="absolute inset-0 -z-10 size-full stroke-gray-200 mask-[radial-gradient(85%_85%_at_top_right,rgb(255,255,255,25%),transparent)]"
   >
     <defs>
       <pattern
         x="50%"
         y={-1}
-        id="0787a7c5-978c-4f66-83c7-11c213f99cb7"
-        width={200}
-        height={200}
+        id="grid-pattern"
+        width={50}
+        height={50}
         patternUnits="userSpaceOnUse"
       >
         <path d="M.5 200V.5H200" fill="none"></path>
@@ -27,13 +26,8 @@ import { siteConfig } from "../config";
       </pattern>
     </defs>
     <rect
-      fill="url(#programming-symbols)"
-      width="100%"
-      height="100%"
-      opacity="0.2"></rect>
-    <rect
-      fill="url(#0787a7c5-978c-4f66-83c7-11c213f99cb7)"
-      width="100%"
+      fill="url(#grid-pattern)"
+      width="109%"
       height="100%"
       stroke-width={0}></rect>
   </svg>
@@ -45,13 +39,13 @@ import { siteConfig } from "../config";
 				class="w-32 h-32 md:w-55 md:h-55 rounded-lg object-cover mb-6 animate-fade-in"
 			/>
       <h1
-        class="mt-6 sm:mt-8 md:mt-10 text-pretty text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight text-gray-400 animate-fade-in animation-delay-200"
-      >
-        I'm <span class="text-gray-200">{siteConfig.name}</span
-        >
+        class="mt-6 sm:mt-8 md:mt-10 text-pretty text-4xl sm:text-5xl md:text-6xl lg:text-8xl tracking-tight text-gray-200 animate-fade-in animation-delay-200 font-semibold"
+				>
+        {siteConfig.name}
+        
       </h1>
       <p
-        class="mt-4 sm:mt-6 md:mt-8 text-pretty text-base sm:text-lg md:text-xl/8 font-medium text-gray-400 animate-fade-in animation-delay-400"
+        class="mt-4 sm:mt-6 md:mt-8 text-pretty text-base sm:text-lg md:text-xl/8 font-normal text-gray-400 animate-fade-in animation-delay-400"
       >
         {siteConfig.title}
       </p>

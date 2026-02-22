@@ -4,20 +4,20 @@ import { siteConfig } from "../config";
 
 <header
   id="header"
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+  class="fixed top-0 left-0 right-0 z-50 h-16 transition-all duration-500"
 >
-  <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center">
+  <nav class="max-w-9/10 mx-auto px-6 py-4 flex items-center">
 
     <!-- Logo -->
     <a href="/" class="flex items-center">
-      <img src="/favicon.svg" alt="Logo" class="h-8 w-8 object-contain" />
+      <img src="/favicon.png" alt="Logo" class="h-8 w-18 object-contain transform scale-200" />
     </a>
 
     <!-- Desktop Links -->
-    <ul class="hidden md:flex items-center gap-8 mx-auto">
+    <ul class="hidden md:flex items-center gap-8 ml-16">
 			{siteConfig.navBar.map(item => (
 				<li>
-					<a href={item.link}class="text-gray-200 hover:text-gray-400 transition-colors font-medium">
+					<a href={item.link}class="text-gray-200 hover:text-gray-400 transition-colors">
 						{item.name}
 					</a>
 				</li>
@@ -79,9 +79,9 @@ import { siteConfig } from "../config";
   window.addEventListener("scroll", () => {
     const header = document.getElementById("header");
     if (window.scrollY > 100) {
-      header?.classList.add("bg-gray-900/80", "backdrop-blur-sm");
+      header?.classList.add("bg-gray-800/80", "backdrop-blur-sm");
     } else {
-      header?.classList.remove("bg-gray-900/80", "backdrop-blur-sm");
+      header?.classList.remove("bg-gray-800/80", "backdrop-blur-sm");
     }
   });
 </script>
