@@ -1,4 +1,4 @@
-name: Deploy Astro to GitHub Pages (Custom Subdomain)
+name: Deploy Astro to GitHub Pages
 
 on:
   push:
@@ -13,21 +13,31 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
     steps:
-      # Checkout repo
+      # 1️⃣ Checkout repo
       - uses: actions/checkout@v5
 
-      # Build with Astro
+      # 2️⃣ Build with Astro
       - uses: withastro/action@v5
         with:
           node-version: 20
           cache: npm
 
-      # Disable Jekyll
+      # 3️⃣ Disable Jekyll
       - name: Disable Jekyll
         run: touch dist/.nojekyll
 
-      # Deploy to GitHub Pages
-      - uses: actions/deploy-pages@v4
+      # 5️⃣ Upload dist/ as artifact
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
         with:
-          folder: dist
+          name: site
+          path: dist
+
+      # 6️⃣ Deploy Pages from artifact
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: site
