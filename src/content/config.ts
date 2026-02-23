@@ -13,11 +13,11 @@ const credentials = defineCollection({
 
 const projects = defineCollection({
 	schema: z.object({
-		order: z.number(),
 		dateStart: z.string(),
     dateEnd: z.string().optional(),
     location: z.string().optional(),
 		title: z.string(),
+		projectType: z.string(),
 		tech: z.array(z.string()),
   }),
 });

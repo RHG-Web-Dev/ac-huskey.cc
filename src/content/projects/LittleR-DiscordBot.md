@@ -1,5 +1,4 @@
 ---
-order: 4
 tech: [
 		"Discord.js#7289DA",
 		"Heroku#430098",
@@ -14,9 +13,10 @@ tech: [
 		"GitHub#181717",
 		"Visual Studio Code#007ACC"
 	]
-title: "Discord Bot - LittleR"
-dateStart: "Aug 2017"
-dateEnd: "Dec 2022"
+title: "LittleR"
+projectType: "Discord Bot"
+dateStart: "2018-08-01"
+dateEnd: "2021-12-01"
 ---
 
 • Developed and maintained a feature-rich Discord bot using Discord.js, providing various functionalities to enhance user experience.

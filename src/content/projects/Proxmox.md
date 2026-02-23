@@ -1,5 +1,4 @@
 ---
-order: 2
 tech: [
 		"Home Assistant#FF6F61",
 		"Proxmox VE#E5492B",
@@ -9,8 +8,9 @@ tech: [
 		"Uptime Kuma#FF5733",
 		"Zipline#8E44AD",
 ]
-title: "Homelab - Proxmox Virtualization"
-dateStart: "Aug 2025"
+title: "Proxmox Virtualization"
+projectType: "Homelab"
+dateStart: "2025-02-01"
 ---
 • Used Proxmox VE to create and manage virtual machines, optimizing resource allocation for various workloads.
 

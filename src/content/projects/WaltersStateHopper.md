@@ -1,5 +1,4 @@
 ---
-order: 3
 tech: [
 		"AlmaLinux#0F4C81",
 		"Apache#D22128",
@@ -9,10 +8,11 @@ tech: [
 		"ASP.NET#512BD4",
 		"VMware#607078"
 	]
-title: "WSCC Business and Technical Education - Hopper Linux Server"
+title: "Hopper Linux Server"
+projectType: "WSCC Business and Technical Education"
 location: "Morristown, TN"
-dateStart: "Aug 2023"
-dateEnd: "Dec 2023"
+dateStart: "2023-08-20"
+dateEnd: "2023-12-05"
 ---
 
 • Built and tested in virtual machine environments, troubleshooting issues and validating system stability.

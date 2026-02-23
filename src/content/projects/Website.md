@@ -1,5 +1,4 @@
 ---
-order: 1
 tech: [
 		"Node.js#339933",
 		"Astro#F7DF1E",
@@ -10,8 +9,9 @@ tech: [
 		"GitHub#181717",
 		"Visual Studio Code#007ACC"
 	]
-title: "Website - huskey.cc"
-dateStart: "Feb 2026"
+title: "huskey.cc"
+projectType: "Website"
+dateStart: "2026-02-01"
 ---
 
 • Developed a personal website using modern web technologies, showcasing projects, skills, and professional experience.

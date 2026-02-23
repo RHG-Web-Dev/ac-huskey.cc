@@ -2,7 +2,11 @@
 import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects');
-projects.sort((a, b) => a.data.order - b.data.order);
+projects.sort((a, b) => {
+	const dateA = new Date(a.data.dateStart).getTime();
+	const dateB = new Date(b.data.dateStart).getTime();
+	return dateB - dateA; // For descending order
+});
 ---
 
 <section id="projects" class="p-8 sm:p-12 md:p-16 lg:p-24">
@@ -34,7 +38,7 @@ projects.sort((a, b) => a.data.order - b.data.order);
 									return (
 										<span
 											class="px-3 sm:px-4 py-1.5 sm:py-2 text-gray-100 rounded-lg text-sm sm:text-base md:text-lg font-medium transition-colors duration-200"
-											style={{ backgroundColor: `${color}50` }}
+											style={{ backgroundColor: `${color}20` }}
 										>
 											{name}
 										</span>
@@ -52,7 +56,7 @@ projects.sort((a, b) => a.data.order - b.data.order);
 									<div class="block relative p-4 sm:p-6 md:p-8 bg-gray-800/20 rounded-xl sm:rounded-2xl transition-all duration-300 backdrop-blur-sm">
 										<div class="space-y-4">
 											<div class="space-y-2">
-												<span class="text-sm font-mono text-blue-500">
+												<span class="text-sm font-mono text-gray-300">
 													{String(index + 1).padStart(2, '0')}
 												</span>
 												<div class="flex justify-between items-start gap-4">
@@ -60,6 +64,9 @@ projects.sort((a, b) => a.data.order - b.data.order);
 														<h3 class="text-xl sm:text-2xl font-bold text-gray-100 mt-1">
 															{project.data.title}
 														</h3>
+														<h4 class="text-base font-normal text-gray-200">
+															{project.data.projectType}
+														</h4>
 													</div>
 													<div>
 														{project.data.location && (
@@ -68,10 +75,21 @@ projects.sort((a, b) => a.data.order - b.data.order);
 															</span>
 														)}
 														<div class="text-sm text-gray-300 font-mono">
-															{project.data.dateStart}
+															{new Date(
+																project.data.dateStart,
+															).toLocaleDateString('en-US', {
+																year: 'numeric',
+																month: 'short',
+															})}{' '}
+															-
 															{project.data.dateEnd &&
-																` – ${project.data.dateEnd}`}
-															{!project.data.dateEnd && ' – Present'}
+																new Date(
+																	project.data.dateEnd,
+																).toLocaleDateString('en-US', {
+																	year: 'numeric',
+																	month: 'short',
+																})}
+															{!project.data.dateEnd && 'Present'}
 														</div>
 													</div>
 												</div>
