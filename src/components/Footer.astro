@@ -2,24 +2,28 @@
 import { siteConfig } from '../config';
 ---
 
-<footer class="relative bg-gray-50 border-t border-gray-200">
+<!-- <footer class="relative bg-gray-500/60 backdrop-blur-sm rounded-t-2xl"> --><!-- Fade from bottom to top with a gradient background and a blur effect, with a
+rounded top border -->
+<footer
+	class="relative bg-linear-to-t from-gray-800/90 to-gray-500/10 backdrop-blur-2xl rounded-t-2xl"
+>
 	<div class="mx-auto max-w-6xl px-6 py-12 lg:px-8">
 		<div
 			class="flex flex-col md:flex-row md:items-center md:justify-between gap-8"
 		>
 			<div class="flex flex-col gap-4">
-				<h3 class="text-2xl font-bold text-gray-800">
+				<h3 class="text-2xl font-bold text-gray-100">
 					{siteConfig.name}
 				</h3>
-				<p class="text-base text-gray-600">
+				<p class="text-base text-gray-300">
 					{siteConfig.title}
 				</p>
 			</div>
 
 			<div class="md:flex hidden flex-col md:items-end gap-4">
-				<p class="text-sm text-gray-500">
+				<p class="text-sm text-gray-200">
 					© {new Date().getFullYear()}
-					{siteConfig.name}. All rights reserved.
+					{siteConfig.name}.
 				</p>
 			</div>
 		</div>
@@ -28,7 +32,7 @@ import { siteConfig } from '../config';
 	<!-- Back to Top Button -->
 	<button
 		id="back-to-top"
-		class="opacity-0 fixed bottom-8 right-8 aspect-square rounded-xl bg-gray-700 text-white p-4 shadow-lg hover:bg-gray-600 transition-all duration-900"
+		class="opacity-0 fixed bottom-8 right-8 aspect-square rounded-xl bg-gray-800 text-white p-4 shadow-lg hover:bg-gray-600 transition-all duration-900"
 		aria-label="Back to top"
 	>
 		↑
