@@ -4,15 +4,15 @@ import { siteConfig } from '../config';
 
 <header
 	id="header"
-	class="fixed top-0 left-5 right-5 z-50 h-16 transition-all duration-500 rounded-b-2xl"
+	class="fixed top-0 left-3 right-3 z-50 h-16 transition-all duration-500 rounded-b-2xl"
 >
-	<nav class="max-w-9/10 mx-auto px-6 py-4 flex items-center">
+	<nav class="mx-auto px-4 py-4 flex items-center">
 		<!-- Logo -->
 		<a href="/" class="flex items-center">
 			<img
 				src="/favicon.png"
 				alt="Logo"
-				class="h-8 w-18 object-contain transform scale-200"
+				class="h-8 w-18 object-contain transform scale-125"
 			/>
 		</a>
 
@@ -33,12 +33,12 @@ import { siteConfig } from '../config';
 		</ul>
 
 		<!-- Desktop Connect Button -->
-		<a
+		<!-- <a
 			href="https://connect.huskey.cc"
 			class="hidden md:inline-block ml-auto px-4 py-2 rounded-lg bg-white/30 hover:bg-white/20 text-gray-100 transition backdrop-blur-sm"
 		>
 			Connect
-		</a>
+		</a> -->
 
 		<!-- Mobile Hamburger -->
 		<button
@@ -53,7 +53,7 @@ import { siteConfig } from '../config';
 	<!-- Mobile Menu -->
 	<div
 		id="mobile-menu"
-		class="hidden md:hidden bg-gray-900/95 backdrop-blur-md"
+		class="hidden md:hidden bg-gray-900/95 backdrop-blur-md rounded-2xl"
 	>
 		<ul class="flex flex-col px-6 py-6 gap-6">
 			{
@@ -68,14 +68,14 @@ import { siteConfig } from '../config';
 					</li>
 				))
 			}
-			<li>
+			<!-- <li>
 				<a
 					href="https://connect.huskey.cc"
 					class="text-gray-200 hover:text-gray-400 transition-colors font-medium"
 				>
 					Connect
 				</a>
-			</li>
+			</li> -->
 		</ul>
 	</div>
 </header>
@@ -84,17 +84,36 @@ import { siteConfig } from '../config';
 	const menuBtn = document.getElementById('menu-btn');
 	const mobileMenu = document.getElementById('mobile-menu');
 
+	// Close mobile menu when clicking outside or on scroll
+	document.addEventListener('click', (event) => {
+		const targetNode = event.target instanceof Node ? event.target : null;
+		if (
+			mobileMenu?.classList.contains('hidden') ||
+			menuBtn?.contains(targetNode) ||
+			mobileMenu?.contains(targetNode)
+		) {
+			return;
+		}
+		mobileMenu?.classList.add('hidden');
+	});
+
+	document.addEventListener('scroll', () => {
+		if (!mobileMenu?.classList.contains('hidden')) {
+			mobileMenu?.classList.add('hidden');
+		}
+	});
+
 	menuBtn?.addEventListener('click', () => {
 		mobileMenu?.classList.toggle('hidden');
 	});
-	// Fire on load and on scroll to check if the header should have a background
 
+	// Change header background on scroll
 	const scrollHandler = () => {
 		const header = document.getElementById('header');
-		if (window.scrollY > 100) {
-			header?.classList.add('bg-gray-800/80', 'backdrop-blur-sm');
+		if (window.scrollY > 50) {
+			header?.classList.add('bg-gray-500/60', 'backdrop-blur-sm');
 		} else {
-			header?.classList.remove('bg-gray-800/80', 'backdrop-blur-sm');
+			header?.classList.remove('bg-gray-500/60', 'backdrop-blur-sm');
 		}
 	};
 
