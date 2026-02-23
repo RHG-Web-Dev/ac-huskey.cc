@@ -1,13 +1,13 @@
 ---
-import { siteConfig } from "../config";
+import { siteConfig } from '../config';
 
 function getSeason() {
-  const month = new Date().getMonth() + 1;
+	const month = new Date().getMonth() + 1;
 
-  if (month >= 3 && month <= 5) return "spring";
-  if (month >= 6 && month <= 8) return "summer";
-  if (month >= 9 && month <= 11) return "autumn";
-  return "winter";
+	if (month >= 3 && month <= 5) return 'spring';
+	if (month >= 6 && month <= 8) return 'summer';
+	if (month >= 9 && month <= 11) return 'autumn';
+	return 'winter';
 }
 
 const bgConfig = siteConfig.backgrounds;
@@ -16,39 +16,40 @@ let selectedImage = bgConfig.default;
 
 const season = getSeason();
 const options = bgConfig?.[season];
-if (Array.isArray(options) && options.length > 0) selectedImage = options[Math.floor(Math.random() * options.length)];
-
+if (Array.isArray(options) && options.length > 0)
+	selectedImage = options[Math.floor(Math.random() * options.length)];
 
 const backgroundUrl = `https://images.unsplash.com/photo-${selectedImage}?auto=format&fit=crop&w=1920&q=80`;
 ---
 
 <div
-  id="background"
-  class="fixed inset-0 -z-50 bg-cover bg-center bg-no-repeat opacity-0 transition-opacity duration-3000"
-  style={`background-image: url('${backgroundUrl}')`}
+	id="background"
+	class="fixed inset-0 -z-50 bg-cover bg-center bg-no-repeat opacity-0 transition-opacity duration-3000"
+	style={`background-image: url('${backgroundUrl}')`}
 >
-  <div
-    class="pointer-events-none absolute inset-0 backdrop-blur-xs"
-    style="background: linear-gradient(5deg, rgba(0,0,0,0.5), rgba(0,0,0,0.75));"
-  ></div>
+	<div
+		class="pointer-events-none absolute inset-0 backdrop-blur-xs"
+		style="background: linear-gradient(5deg, rgba(0,0,0,0.3), rgba(0,0,0,0.5));"
+	>
+	</div>
 </div>
 
 <script>
-  const bg = document.getElementById("background");
+	const bg = document.getElementById('background');
 
-  if (bg) {
-    const style = bg.getAttribute("style");
-    const match = style?.match(/url\('(.*)'\)/);
-    const url = match?.[1];
+	if (bg) {
+		const style = bg.getAttribute('style');
+		const match = style?.match(/url\('(.*)'\)/);
+		const url = match?.[1];
 
-    if (url) {
-      const img = new Image();
-      img.src = url;
+		if (url) {
+			const img = new Image();
+			img.src = url;
 
-      img.onload = () => {
-        bg.classList.remove("opacity-0");
-        bg.classList.add("opacity-100");
-      };
-    }
-  }
+			img.onload = () => {
+				bg.classList.remove('opacity-0');
+				bg.classList.add('opacity-100');
+			};
+		}
+	}
 </script>
