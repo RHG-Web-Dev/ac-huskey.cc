@@ -25,39 +25,5 @@ import Credentials from '../components/Credentials.astro';
 			<Projects />
 		</section>
 		<Footer />
-	</body><!-- <script>
-		const sections = document.querySelectorAll("section[id]");
-		const titleEl = document.getElementById("page-title");
-		const defaultTitle = titleEl ? titleEl.textContent : document.title;
-
-		// Map section ID to custom title text
-		const sectionTitles = {
-			about: "About",
-			projects: "Projects",
-			experience: "Experience",
-			education: "Education"
-		};
-
-		const observerOptions = {
-			root: null, // viewport
-			rootMargin: "0px",
-			threshold: 0.5 // 50% of section is visible
-		};
-
-		const observer = new IntersectionObserver((entries) => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting && titleEl) {
-					const id = entry.target.id as keyof typeof sectionTitles;
-					titleEl.textContent = sectionTitles[id] + " – " + defaultTitle || defaultTitle;
-				}
-			});
-		}, observerOptions);
-
-		sections.forEach(section => observer.observe(section));
-
-		// Optional: reset title if scrolled to top
-		window.addEventListener("scroll", () => {
-			if (window.scrollY === 0 && titleEl) titleEl.textContent = defaultTitle;
-		});
-	</script> -->
+	</body>
 </html>
