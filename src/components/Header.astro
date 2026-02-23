@@ -1,93 +1,109 @@
 ---
-import { siteConfig } from "../config";
+import { siteConfig } from '../config';
 ---
 
 <header
-  id="header"
-  class="fixed top-0 left-0 right-0 z-50 h-16 transition-all duration-500"
+	id="header"
+	class="fixed top-0 left-5 right-5 z-50 h-16 transition-all duration-500 rounded-b-2xl"
 >
-  <nav class="max-w-9/10 mx-auto px-6 py-4 flex items-center">
+	<nav class="max-w-9/10 mx-auto px-6 py-4 flex items-center">
+		<!-- Logo -->
+		<a href="/" class="flex items-center">
+			<img
+				src="/favicon.png"
+				alt="Logo"
+				class="h-8 w-18 object-contain transform scale-200"
+			/>
+		</a>
 
-    <!-- Logo -->
-    <a href="/" class="flex items-center">
-      <img src="/favicon.png" alt="Logo" class="h-8 w-18 object-contain transform scale-200" />
-    </a>
+		<!-- Desktop Links -->
+		<ul class="hidden md:flex items-center gap-8 ml-16">
+			{
+				siteConfig.navBar.map((item) => (
+					<li>
+						<a
+							href={item.link}
+							class="text-gray-200 hover:text-gray-400 transition-colors"
+						>
+							{item.name}
+						</a>
+					</li>
+				))
+			}
+		</ul>
 
-    <!-- Desktop Links -->
-    <ul class="hidden md:flex items-center gap-8 ml-16">
-			{siteConfig.navBar.map(item => (
-				<li>
-					<a href={item.link}class="text-gray-200 hover:text-gray-400 transition-colors">
-						{item.name}
-					</a>
-				</li>
-      ))}
-    </ul>
+		<!-- Desktop Connect Button -->
+		<a
+			href="https://connect.huskey.cc"
+			class="hidden md:inline-block ml-auto px-4 py-2 rounded-lg bg-white/30 hover:bg-white/20 text-gray-100 transition backdrop-blur-sm"
+		>
+			Connect
+		</a>
 
-    <!-- Desktop Connect Button -->
-    <a
-      href="https://connect.huskey.cc"
-      class="hidden md:inline-block ml-auto px-4 py-2 rounded-lg bg-white/30 hover:bg-white/20 text-gray-100 transition backdrop-blur-sm"
-    >
-      Connect
-    </a>
+		<!-- Mobile Hamburger -->
+		<button
+			id="menu-btn"
+			class="md:hidden ml-auto text-gray-200 text-4xl"
+			aria-label="Toggle menu"
+		>
+			☰
+		</button>
+	</nav>
 
-    <!-- Mobile Hamburger -->
-    <button
-      id="menu-btn"
-      class="md:hidden ml-auto text-gray-200 text-4xl"
-      aria-label="Toggle menu"
-    >
-      ☰
-    </button>
-
-  </nav>
-
-  <!-- Mobile Menu -->
-  <div
-    id="mobile-menu"
-    class="hidden md:hidden bg-gray-900/95 backdrop-blur-md"
-  >
-    <ul class="flex flex-col px-6 py-6 gap-6">
-			{siteConfig.navBar.map(item => (
-				<li>
-					<a href={item.link}class="text-gray-200 hover:text-gray-400 transition-colors font-medium">
-						{item.name}
-					</a>
-				</li>
-      ))}
-      <li>
-        <a
-          href="https://connect.huskey.cc"
-          class="text-gray-200 hover:text-gray-400 transition-colors font-medium"
-        >
-          Connect
-        </a>
-      </li>
-    </ul>
-  </div>
+	<!-- Mobile Menu -->
+	<div
+		id="mobile-menu"
+		class="hidden md:hidden bg-gray-900/95 backdrop-blur-md"
+	>
+		<ul class="flex flex-col px-6 py-6 gap-6">
+			{
+				siteConfig.navBar.map((item) => (
+					<li>
+						<a
+							href={item.link}
+							class="text-gray-200 hover:text-gray-400 transition-colors font-medium"
+						>
+							{item.name}
+						</a>
+					</li>
+				))
+			}
+			<li>
+				<a
+					href="https://connect.huskey.cc"
+					class="text-gray-200 hover:text-gray-400 transition-colors font-medium"
+				>
+					Connect
+				</a>
+			</li>
+		</ul>
+	</div>
 </header>
 
 <script>
-  const menuBtn = document.getElementById("menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
+	const menuBtn = document.getElementById('menu-btn');
+	const mobileMenu = document.getElementById('mobile-menu');
 
-  menuBtn?.addEventListener("click", () => {
-    mobileMenu?.classList.toggle("hidden");
-  });
+	menuBtn?.addEventListener('click', () => {
+		mobileMenu?.classList.toggle('hidden');
+	});
+	// Fire on load and on scroll to check if the header should have a background
 
-  window.addEventListener("scroll", () => {
-    const header = document.getElementById("header");
-    if (window.scrollY > 100) {
-      header?.classList.add("bg-gray-800/80", "backdrop-blur-sm");
-    } else {
-      header?.classList.remove("bg-gray-800/80", "backdrop-blur-sm");
-    }
-  });
+	const scrollHandler = () => {
+		const header = document.getElementById('header');
+		if (window.scrollY > 100) {
+			header?.classList.add('bg-gray-800/80', 'backdrop-blur-sm');
+		} else {
+			header?.classList.remove('bg-gray-800/80', 'backdrop-blur-sm');
+		}
+	};
+
+	window.addEventListener('load', scrollHandler);
+	window.addEventListener('scroll', scrollHandler);
 </script>
 
 <style>
-  html {
-    scroll-behavior: smooth;
-  }
+	html {
+		scroll-behavior: smooth;
+	}
 </style>

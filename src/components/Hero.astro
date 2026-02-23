@@ -1,84 +1,80 @@
 ---
-import { siteConfig } from "../config";
+import { siteConfig } from '../config';
 ---
 
-<div
-  id="hero"
-  class="relative isolate overflow-hidden py-24 md:h-screen"
->
-  <!-- Gradient overlay -->
-  <svg
-    aria-hidden="true"
-    class="absolute inset-0 -z-10 size-full stroke-gray-200 mask-[radial-gradient(85%_85%_at_top_right,rgb(255,255,255,25%),transparent)]"
-  >
-    <defs>
-      <pattern
-        x="50%"
-        y={-1}
-        id="grid-pattern"
-        width={50}
-        height={50}
-        patternUnits="userSpaceOnUse"
-      >
-        <path d="M.5 200V.5H200" fill="none"></path>
-      </pattern>
-      
-      </pattern>
-    </defs>
-    <rect
-      fill="url(#grid-pattern)"
-      width="109%"
-      height="100%"
-      stroke-width={0}></rect>
-  </svg>
-  <div class="h-full mx-auto p-8 sm:p-12 md:p-24 flex items-center">
-    <div>
+<div id="hero" class="relative isolate overflow-hidden py-24 md:h-screen">
+	<!-- Gradient overlay -->
+	<svg
+		aria-hidden="true"
+		class="absolute inset-0 -z-10 size-full stroke-gray-200 mask-[radial-gradient(85%_85%_at_top_right,rgb(255,255,255,25%),transparent)]"
+	>
+		<defs>
+			<pattern
+				x="50%"
+				y={-1}
+				id="grid-pattern"
+				width={50}
+				height={50}
+				patternUnits="userSpaceOnUse"
+			>
+				<path d="M.5 200V.5H200" fill="none"></path>
+			</pattern>
+		</defs>
+		<rect fill="url(#grid-pattern)" width="109%" height="100%" stroke-width={0}
+		></rect>
+	</svg>
+	<div class="h-full mx-auto p-8 sm:p-12 md:p-24 flex items-center">
+		<div>
 			<img
 				src="/profile.jpg"
 				alt="Headshot"
-				class="w-32 h-32 md:w-55 md:h-55 rounded-lg object-cover mb-6 animate-fade-in"
+				class="w-65 h-65 rounded-4xl object-cover mb-6 animate-fade-in"
 			/>
-      <h1
-        class="mt-6 sm:mt-8 md:mt-10 text-pretty text-4xl sm:text-5xl md:text-6xl lg:text-8xl tracking-tight text-gray-200 animate-fade-in animation-delay-200 font-semibold"
-				>
-        {siteConfig.name}
-        
-      </h1>
-      <p
-        class="mt-4 sm:mt-6 md:mt-8 text-pretty text-base sm:text-lg md:text-xl/8 font-normal text-gray-400 animate-fade-in animation-delay-400"
-      >
-        {siteConfig.title}
-      </p>
-    </div>
-  </div>
+			<h1
+				class="mt-6 sm:mt-8 md:mt-10 text-pretty text-4xl sm:text-5xl md:text-6xl lg:text-8xl tracking-tight text-gray-200 animate-fade-in animation-delay-200 font-semibold"
+			>
+				{siteConfig.name}
+			</h1>
+			<p
+				class="mt-4 sm:mt-6 md:mt-8 text-pretty text-base sm:text-lg md:text-xl/8 font-normal text-gray-300 animate-fade-in animation-delay-400"
+			>
+				{siteConfig.title}
+			</p>
+			<p
+				class="text-pretty text-base sm:text-lg md:text-xl/9 font-normal text-gray-400 animate-fade-in animation-delay-600"
+			>
+				{siteConfig.location}
+			</p>
+		</div>
+	</div>
 </div>
 
 <style>
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
 
-  .animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
-    opacity: 0;
-  }
+	.animate-fade-in {
+		animation: fadeIn 0.8s ease-out forwards;
+		opacity: 0;
+	}
 
-  .animation-delay-200 {
-    animation-delay: 0.2s;
-  }
+	.animation-delay-200 {
+		animation-delay: 0.2s;
+	}
 
-  .animation-delay-400 {
-    animation-delay: 0.4s;
-  }
+	.animation-delay-400 {
+		animation-delay: 0.4s;
+	}
 
-  .animation-delay-600 {
-    animation-delay: 0.6s;
-  }
+	.animation-delay-600 {
+		animation-delay: 0.6s;
+	}
 </style>
