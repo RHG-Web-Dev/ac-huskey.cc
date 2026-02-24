@@ -35,19 +35,19 @@ const links = await response.json();
 			/>
 
 			<h1
-				class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl tracking-tight text-gray-200 font-semibold animate-fade-in animation-delay-200"
+				class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl tracking-tight text-white font-semibold animate-fade-in animation-delay-200"
 			>
 				{siteConfig.name}
 			</h1>
 
 			<p
-				class="text-base sm:text-lg md:text-xl text-gray-300 animate-fade-in animation-delay-400"
+				class="text-base sm:text-lg md:text-xl text-white/80 animate-fade-in animation-delay-400"
 			>
 				{siteConfig.title}
 			</p>
 
 			<p
-				class="text-base sm:text-lg md:text-xl text-gray-400 animate-fade-in animation-delay-600"
+				class="text-base sm:text-lg md:text-xl text-white/60 animate-fade-in animation-delay-600"
 			>
 				{siteConfig.location}
 			</p>
@@ -60,7 +60,7 @@ const links = await response.json();
 								href={`https://rhgdev.in/@${key}`}
 								target="_blank"
 								rel="noopener noreferrer"
-								class="text-gray-400 hover:text-white transition text-2xl animate-fade-in opacity-0 "
+								class="text-white/40 hover:text-white transition text-2xl animate-fade-in opacity-0 drop-shadow-[0_0_2px_black]"
 								style={`animation-delay: ${1000 + index * 100}ms; animation-fill-mode: forwards;`}
 								aria-label={link.title}
 							>
