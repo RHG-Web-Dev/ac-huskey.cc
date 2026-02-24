@@ -1,0 +1,95 @@
+---
+import Meta from '../../components/Meta.astro';
+import Background from '../../components/Background.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+import '../../styles/global.css';
+
+const blogPosts = await getCollection('blog');
+
+blogPosts.sort((a, b) => {
+	const dateA = new Date(a.data.date).getTime();
+	const dateB = new Date(b.data.date).getTime();
+	return dateB - dateA;
+});
+---
+
+<html lang="en">
+	<head>
+		<Meta title="Blog" />
+	</head>
+
+	<body class="relative bg-gray-900 text-gray-200">
+		<Background />
+		<Header />
+
+		<section id="blog" class="p-16 lg:p-24 min-h-[75vh]" >
+			<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+				<div class="lg:col-span-4">
+					<div
+						class="text-xs sm:text-sm font-mono text-gray-400 uppercase tracking-wider"
+					>
+						<span class="mx-1 opacity-60">/</span>
+						<a
+							href="/blog"
+							class="hover:text-white transition-colors duration-200"
+						>
+							blog
+						</a>
+					</div>
+					<h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-100">
+						Blog
+					</h2>
+					<p class="mt-6 text-base sm:text-lg text-gray-400 leading-relaxed">
+						Thoughts, experiments, lessons learned, and technical deep dives.
+					</p>
+				</div>
+
+				<!-- Posts Column -->
+				<div class="lg:col-span-8 space-y-8">
+					{
+						blogPosts.map((post, index) => {
+							return (
+							<div class="group relative">
+								<a
+									href={`/blog/${post.slug}`}
+									class="block relative p-4 sm:p-6 md:p-8 bg-gray-800/20 rounded-xl sm:rounded-2xl transition-all duration-300 backdrop-blur-sm hover:bg-gray-800/40"
+								>
+									<div class="space-y-4">
+										
+										<!-- Number + Date -->
+										<div class="space-y-2">
+											<span class="text-sm font-mono text-gray-300 uppercase tracking-wider">
+	{post.slug}
+</span>
+
+											<div class="flex justify-between items-start gap-4">
+												<h3 class="text-xl sm:text-2xl font-bold text-gray-100 mt-1 group-hover:text-white transition-colors">
+													{post.data.title}
+												</h3>
+
+												<span class="text-sm text-gray-300 font-mono whitespace-nowrap">
+													{new Date(post.data.date).toLocaleDateString('en-US', {
+														year: 'numeric',
+														month: 'short',
+													})}
+												</span>
+											</div>
+										</div>
+
+										<p class="text-base sm:text-lg text-gray-400 leading-relaxed">
+											{post.body.replace('/[#_*>\-\n`]/g', '').slice(0, 125).trim()}...
+										</p>
+									</div>
+								</a>
+							</div>
+						)})
+					}
+				</div>
+			</div>
+		</section>
+
+		<Footer />
+	</body>
+</html>
