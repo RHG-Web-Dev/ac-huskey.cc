@@ -12,6 +12,8 @@ title: "Proxmox Virtualization"
 projectType: "Homelab"
 dateStart: "2025-02-01"
 ---
+First start of my homelab journey, where I set up a Proxmox VE server to host various virtual machines and services. This project allowed me to learn about virtualization, server management, and self-hosting applications, enhancing my technical skills and providing a platform for experimentation and development.
+
 • Used Proxmox VE to create and manage virtual machines, optimizing resource allocation for various workloads.
 
 • Self-hosted multiple services, including uptime monitoring and project deployment environments enhancing personal and professional productivity.

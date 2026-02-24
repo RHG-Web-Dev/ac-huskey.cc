@@ -18,15 +18,10 @@ projectType: "Discord Bot"
 dateStart: "2018-08-01"
 dateEnd: "2021-12-01"
 ---
+Basic Discord Bot that turned into a rich logger at the end. Projects has since been archived and is no longer maintained, but it was a great learning experience for me as a beginner programmer. I learned how to work with APIs, manage databases, and create engaging user experiences through the bot's features.
 
 • Developed and maintained a feature-rich Discord bot using Discord.js, providing various functionalities to enhance user experience.
-
-• Deployed the bot on Heroku, ensuring high availability and scalability to accommodate a growing user base.
 
 • Utilized MongoDB for efficient data storage and retrieval, enabling dynamic content management and user interactions.
 
 • Implemented various commands and features, including moderation tools, entertainment commands, and utility functions, contributing to an engaging community environment.
-
-• Managed the project using Git and GitHub, facilitating version control and collaborative development.
-
-• Leveraged Visual Studio Code for efficient coding, debugging, and project management, streamlining the development process.

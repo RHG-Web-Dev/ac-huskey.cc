@@ -13,11 +13,4 @@ title: "huskey.cc"
 projectType: "Website"
 dateStart: "2026-02-01"
 ---
-
-• Developed a personal website using modern web technologies, showcasing projects, skills, and professional experience.
-
-• Implemented responsive design principles to ensure optimal viewing across various devices and screen sizes.
-
-• Utilized Git and GitHub for version control and collaborative development, enabling efficient project management and deployment.
-
-• Leveraged Visual Studio Code for efficient coding, debugging, and project management, streamlining the development process.
+Personal website built using Astro, showcasing projects, skills, and professional experience. The website features a clean and modern design, with responsive layouts for optimal viewing on various devices. It serves as a platform to share my work, thoughts, and updates with the world.
