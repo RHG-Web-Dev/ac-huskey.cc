@@ -42,6 +42,6 @@ export const siteConfig = {
 	navBar: [
 		{ name: "About", link: "/#about" },
 		{ name: "Credentials", link: "/#credentials" },
-		{ name: "Projects", link: "#projects" },
+		{ name: "Projects", link: "/#projects" },
 	],
 };
