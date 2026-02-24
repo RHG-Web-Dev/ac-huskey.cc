@@ -18,6 +18,7 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
 <!-- <meta name="description" content={description} /> -->
 <link rel="canonical" href={url} />
 <meta name="generator" content={Astro.generator} />
+<link rel="sitemap" href="/sitemap-index.xml" />
 
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="/img/favicon.png" />
