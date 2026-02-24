@@ -31,7 +31,7 @@ const { Content } = await post.render();
 		<section class="p-16 lg:p-24 min-h-[75vh]">
 			<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
 				<!-- Left Column (Title Block) -->
-				<div class="lg:col-span-4">
+				<div class="lg:col-span-4 sticky lg:top-20 self-start">
 					<div
 						class="text-xs sm:text-sm font-mono text-gray-400 uppercase tracking-wider"
 					>
@@ -59,7 +59,7 @@ const { Content } = await post.render();
 						</span>
 					</div>
 					<h2
-						class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-100 leading-tight"
+						class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-100 leading-tight wrap-break-word"
 					>
 						{post.data.title}
 					</h2>

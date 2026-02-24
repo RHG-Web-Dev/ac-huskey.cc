@@ -46,7 +46,7 @@ const { year, posts } = Astro.props;
 		<section class="p-16 lg:p-24 min-h-[75vh]">
 			<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
 				<!-- Left Column -->
-				<div class="lg:col-span-4">
+				<div class="lg:col-span-4 sticky lg:top-20 self-start">
 					<div
 						class="text-xs sm:text-sm font-mono text-gray-400 uppercase tracking-wider"
 					>
@@ -83,25 +83,39 @@ const { year, posts } = Astro.props;
 				<div class="lg:col-span-8 space-y-8">
 					{
 						posts.map((post, index) => (
-							<a
-								href={`/blog/${post.slug}`}
-								class="block p-6 md:p-8 bg-gray-800/20 rounded-2xl backdrop-blur-sm transition hover:bg-gray-800/40"
-							>
-								<span class="text-sm font-mono text-gray-400">
-									{String(index + 1).padStart(2, '0')}
-								</span>
+							<div class="group relative">
+								<a
+									href={`/blog/${post.slug}`}
+									class="block relative p-4 sm:p-6 md:p-8 bg-gray-800/20 rounded-xl sm:rounded-2xl transition-all duration-300 backdrop-blur-sm hover:bg-gray-800/40"
+								>
+									<div class="space-y-4">
+										<div class="space-y-2">
+											<div class="flex justify-between items-start gap-4">
+												<h3 class="text-xl sm:text-2xl font-bold text-gray-100 mt-1 group-hover:text-white transition-colors">
+													{post.data.title}
+												</h3>
 
-								<h3 class="mt-2 text-2xl font-bold text-gray-100">
-									{post.data.title}
-								</h3>
+												<span class="text-sm text-gray-300 font-mono whitespace-nowrap">
+													{new Date(post.data.date).toLocaleDateString(
+														'en-US',
+														{
+															month: 'short',
+															day: 'numeric',
+														},
+													)}
+												</span>
+											</div>
+										</div>
 
-								<p class="mt-2 text-sm font-mono text-gray-300">
-									{new Date(post.data.date).toLocaleDateString('en-US', {
-										month: 'short',
-										day: 'numeric',
-									})}
-								</p>
-							</a>
+										<p class="text-base sm:text-lg text-gray-400 leading-relaxed">
+											{post.body
+												.replace('/[#_*>\-\n`]/g', '')
+												.slice(0, 125)
+												.trim() + (post.body.length > 125 ? '...' : '')}
+										</p>
+									</div>
+								</a>
+							</div>
 						))
 					}
 				</div>

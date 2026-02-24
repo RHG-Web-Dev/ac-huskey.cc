@@ -13,6 +13,24 @@ blogPosts.sort((a, b) => {
 	const dateB = new Date(b.data.date).getTime();
 	return dateB - dateA;
 });
+
+const postsByYear = blogPosts.reduce(
+	(acc, post) => {
+		const year = new Date(post.data.date).getFullYear();
+
+		if (!acc[year]) {
+			acc[year] = [];
+		}
+
+		acc[year].push(post);
+		return acc;
+	},
+	{} as Record<number, typeof blogPosts>,
+);
+
+const groupedYears = Object.entries(postsByYear).sort(
+	([yearA], [yearB]) => Number(yearB) - Number(yearA),
+);
 ---
 
 <html lang="en">
@@ -24,9 +42,9 @@ blogPosts.sort((a, b) => {
 		<Background />
 		<Header />
 
-		<section id="blog" class="p-16 lg:p-24 min-h-[75vh]" >
+		<section id="blog" class="p-16 lg:p-24 min-h-[75vh]">
 			<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-				<div class="lg:col-span-4">
+				<div class="lg:col-span-4 sticky lg:top-20 self-start">
 					<div
 						class="text-xs sm:text-sm font-mono text-gray-400 uppercase tracking-wider"
 					>
@@ -38,7 +56,9 @@ blogPosts.sort((a, b) => {
 							blog
 						</a>
 					</div>
-					<h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-100">
+					<h2
+						class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-100"
+					>
 						Blog
 					</h2>
 					<p class="mt-6 text-base sm:text-lg text-gray-400 leading-relaxed">
@@ -49,43 +69,54 @@ blogPosts.sort((a, b) => {
 				<!-- Posts Column -->
 				<div class="lg:col-span-8 space-y-8">
 					{
-						blogPosts.map((post, index) => {
-							return (
-							<div class="group relative">
-								<a
-									href={`/blog/${post.slug}`}
-									class="block relative p-4 sm:p-6 md:p-8 bg-gray-800/20 rounded-xl sm:rounded-2xl transition-all duration-300 backdrop-blur-sm hover:bg-gray-800/40"
-								>
-									<div class="space-y-4">
-										
-										<!-- Number + Date -->
-										<div class="space-y-2">
-											<span class="text-sm font-mono text-gray-300 uppercase tracking-wider">
-												{post.slug}
-											</span>
+						groupedYears.map(([year, posts]) => (
+							<div class="space-y-8">
+								<div class="flex items-center gap-4 pt-8">
+									<a
+										href={`/blog/${year}`}
+										class="text-2xl font-bold text-gray-100 font-mono hover:text-white transition-colors"
+									>
+										{year}
+									</a>
+									<div class="flex-1 h-px bg-gray-700/50" />
+								</div>
+								{posts.map((post) => (
+									<div class="group relative">
+										<a
+											href={`/blog/${post.slug}`}
+											class="block relative p-4 sm:p-6 md:p-8 bg-gray-800/20 rounded-xl sm:rounded-2xl transition-all duration-300 backdrop-blur-sm hover:bg-gray-800/40"
+										>
+											<div class="space-y-4">
+												<div class="space-y-2">
+													<div class="flex justify-between items-start gap-4">
+														<h3 class="text-xl sm:text-2xl font-bold text-gray-100 mt-1 group-hover:text-white transition-colors">
+															{post.data.title}
+														</h3>
 
-											<div class="flex justify-between items-start gap-4">
-												<h3 class="text-xl sm:text-2xl font-bold text-gray-100 mt-1 group-hover:text-white transition-colors">
-													{post.data.title}
-												</h3>
+														<span class="text-sm text-gray-300 font-mono whitespace-nowrap">
+															{new Date(post.data.date).toLocaleDateString(
+																'en-US',
+																{
+																	month: 'short',
+																	day: 'numeric',
+																},
+															)}
+														</span>
+													</div>
+												</div>
 
-												<span class="text-sm text-gray-300 font-mono whitespace-nowrap">
-													{new Date(post.data.date).toLocaleDateString('en-US', {
-														year: 'numeric',
-														month: 'short',
-													})}
-												</span>
+												<p class="text-base sm:text-lg text-gray-400 leading-relaxed">
+													{post.body
+														.replace('/[#_*>\-\n`]/g', '')
+														.slice(0, 125)
+														.trim() + (post.body.length > 125 ? '...' : '')}
+												</p>
 											</div>
-										</div>
-
-										<p class="text-base sm:text-lg text-gray-400 leading-relaxed">
-											{post.body.replace('/[#_*>\-\n`]/g', '').slice(0, 125).trim()}
-											{post.body.length > 125 && '...'}
-										</p>
+										</a>
 									</div>
-								</a>
+								))}
 							</div>
-						)})
+						))
 					}
 				</div>
 			</div>
