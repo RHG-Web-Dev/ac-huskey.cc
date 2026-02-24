@@ -1,9 +1,5 @@
 ---
 import { siteConfig } from '../config';
-import { getCollection } from 'astro:content';
-
-const projects = await getCollection('projects');
-projects.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <section id="about" class="p-8 sm:p-12 md:p-16 lg:p-24">
