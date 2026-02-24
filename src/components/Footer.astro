@@ -46,19 +46,26 @@ rounded top border -->
 					© {new Date().getFullYear()}
 					{siteConfig.name}.
 				</p>
+				<div class="flex text-sm text-gray-400">
+					<!-- add spacing between for the icons Build with (astro icon) and (tailwindcss icon) -->
+					<span>Built with</span>
+					<Icon name="simple-icons:tailwindcss" class="mx-1" />
+					<span>and</span>
+					<Icon name="simple-icons:astro" class="mx-1" />
+				</div>
 			</div>
 		</div>
 	</div>
-
-	<!-- Back to Top Button -->
-	<button
-		id="back-to-top"
-		class="opacity-0 fixed bottom-32 right-8 aspect-square rounded-xl bg-gray-800 text-white p-4 shadow-lg hover:bg-gray-600 transition-all duration-900"
-		aria-label="Back to top"
-	>
-		↑
-	</button>
 </footer>
+
+<!-- Back to Top Button -->
+<button
+	id="back-to-top"
+	class="opacity-0 fixed bottom-32 right-8 aspect-square rounded-xl bg-gray-800 text-white p-4 shadow-lg hover:bg-gray-600 transition-all duration-900"
+	aria-label="Back to top"
+>
+	↑
+</button>
 
 <script>
 	const backToTop = document.getElementById('back-to-top');
@@ -69,7 +76,10 @@ rounded top border -->
 			const scrollPosition = window.scrollY + window.innerHeight;
 			const pageHeight = document.documentElement.scrollHeight;
 			// show if the page is 150px larger than the viewport and the user has scrolled within 300px of the bottom
-			if (pageHeight > window.innerHeight + 300 && scrollPosition > 300) {
+			if (
+				pageHeight > window.innerHeight + 150 &&
+				scrollPosition > pageHeight - 300
+			) {
 				backToTop.classList.remove('opacity-0', 'translate-y-4');
 				backToTop.classList.add('opacity-100', 'translate-y-0');
 			} else {

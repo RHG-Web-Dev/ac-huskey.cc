@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from '../config';
+import { Image } from 'astro:assets';
 ---
 
 <header
@@ -9,10 +10,13 @@ import { siteConfig } from '../config';
 	<nav class="mx-auto px-4 py-4 flex items-center">
 		<!-- Logo -->
 		<a href="/" class="flex items-center">
-			<img
+			<Image
+				priority
 				src="/img/favicon.png"
 				alt="Logo"
-				class="h-8 w-18 object-contain transform scale-125"
+				width="18"
+				height="18"
+				class="h-8 w-8 object-contain transform scale-125"
 			/>
 		</a>
 
