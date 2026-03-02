@@ -55,10 +55,7 @@ import { Image } from 'astro:assets';
 	</nav>
 
 	<!-- Mobile Menu -->
-	<div
-		id="mobile-menu"
-		class="hidden md:hidden bg-gray-900/95 backdrop-blur-md rounded-2xl"
-	>
+	<div id="mobile-menu" class="hidden md:hidden bg-gray-500/90 rounded-2xl">
 		<ul class="flex flex-col px-6 py-6 gap-6">
 			{
 				siteConfig.navBar.map((item) => (
@@ -72,14 +69,6 @@ import { Image } from 'astro:assets';
 					</li>
 				))
 			}
-			<!-- <li>
-				<a
-					href="https://connect.huskey.cc"
-					class="text-gray-200 hover:text-gray-400 transition-colors font-medium"
-				>
-					Connect
-				</a>
-			</li> -->
 		</ul>
 	</div>
 </header>
