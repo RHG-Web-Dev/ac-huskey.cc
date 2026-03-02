@@ -21,7 +21,7 @@ rounded top border -->
 				<p class="text-base text-gray-300">
 					{siteConfig.title}
 				</p>
-				<div class="flex gap-5 pt-2">
+				<div class="flex flex-wrap gap-5 pt-2">
 					{
 						Object.entries(links).map(([key, value], index) => {
 							const link = value as { title: string; icon: string };
