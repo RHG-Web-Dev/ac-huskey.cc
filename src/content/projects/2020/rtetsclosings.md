@@ -21,3 +21,11 @@ School closures were then tweeted out to followers, providing a valuable service
 <br><br>
 The project was a significant learning experience, teaching me how to work with APIs, manage data, and create engaging user experiences through a social media platform.
 <br><br>
+
+<div class="rounded-xl overflow-hidden ">
+  <iframe
+    src=https://syndication.twitter.com/srv/timeline-profile/screen-name/RT_ETSClosings/
+    class="w-full h-[80vh] transition-all duration-500 ease-in-out"
+    loading="lazy"
+  ></iframe>
+</div>

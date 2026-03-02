@@ -24,3 +24,13 @@ I also implemented Shell scripting to automate server maintenance tasks and depl
 • Automated server setup using Shell scripting, reducing configuration time and recurring errors.
 <br><br>
 • Authored detailed 5-page technical documentation for deployment and maintenance reference.
+
+<p class="text-sm text-gray-300 whitespace-pre-wrap font-mono">
+	  :::    :::  ::::::::  :::::::::  :::::::::  :::::::::: :::::::::  
+     :+:    :+: :+:    :+: :+:    :+: :+:    :+: :+:        :+:    :+: 
+    +:+    +:+ +:+    +:+ +:+    +:+ +:+    +:+ +:+        +:+    +:+ 
+   +#++:++#++ +#+    +:+ +#++:++#+  +#++:++#+  +#++:++#   +#++:++#:  
+  +#+    +#+ +#+    +#+ +#+        +#+        +#+        +#+    +#+ 
+ #+#    #+# #+#    #+# #+#        #+#        #+#        #+#    #+# 
+###    ###  ########  ###        ###        ########## ###    ### 
+</p>

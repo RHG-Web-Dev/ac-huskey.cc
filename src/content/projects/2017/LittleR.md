@@ -27,3 +27,11 @@ It also got verified on Discord, which was a huge milestone for me at the time. 
 • Utilized MongoDB for efficient data storage and retrieval, enabling dynamic content management and user interactions.
 <br><br>
 • Implemented various commands and features, including moderation tools, entertainment commands, and utility functions, contributing to an engaging community environment.
+
+<div class="rounded-xl overflow-hidden ">
+  <iframe
+    src=https://lr.rhgdev.in
+    class="w-full h-[80vh] transition-all duration-500 ease-in-out"
+    loading="lazy"
+  ></iframe>
+</div>
