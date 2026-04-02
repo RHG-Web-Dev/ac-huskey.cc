@@ -38,6 +38,8 @@ const backgrounds = {
 <div
   id="background"
   class="fixed inset-0 -z-50 bg-cover bg-center bg-no-repeat opacity-0 transition-opacity duration-3000"
+  data-backgrounds={JSON.stringify(backgrounds)}
+  data-load-default={loadDefault}
 >
   <div
     class="pointer-events-none absolute inset-0 backdrop-blur-xs"
