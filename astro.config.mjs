@@ -7,12 +7,12 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://rusty.huskey.cc',
+  site: "https://huskey.cc",
 
-    vite: {
-        // @ts-ignore
-        plugins: [tailwindcss()],
-    },
+  vite: {
+    // @ts-ignore
+    plugins: [tailwindcss()],
+  },
 
-    integrations: [icon(), sitemap()],
+  integrations: [icon(), sitemap()],
 });
