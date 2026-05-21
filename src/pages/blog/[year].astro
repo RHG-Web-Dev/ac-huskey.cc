@@ -1,5 +1,6 @@
 ---
 import Core from "../../layouts/Core.astro";
+import Breadcrumb from "../../components/core/Breadcrumb.astro";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
@@ -38,26 +39,12 @@ const { year, posts } = Astro.props;
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
       <!-- Left Column -->
       <div class="lg:col-span-4 sticky lg:top-20 self-start">
-        <div
-          class="text-xs sm:text-sm font-mono text-gray-400 uppercase tracking-wider"
-        >
-          <span class="mx-1 opacity-60">/</span>
-          <a
-            href="/blog"
-            class="hover:text-white transition-colors duration-200"
-          >
-            blog
-          </a>
-
-          <span class="mx-1 opacity-60">/</span>
-
-          <a
-            href={`/blog/${year}`}
-            class="hover:text-white transition-colors duration-200"
-          >
-            {year}
-          </a>
-        </div>
+        <Breadcrumb
+          items={[
+            { label: "blog", href: "/blog" },
+            { label: year, href: `/blog/${year}` },
+          ]}
+        />
 
         <h2
           class="mt-4 text-4xl md:text-5xl xl:text-7xl font-bold text-gray-100"

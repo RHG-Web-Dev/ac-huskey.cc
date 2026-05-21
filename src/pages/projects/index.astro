@@ -1,6 +1,8 @@
 ---
 import Core from "../../layouts/Core.astro";
 import { getCollection } from "astro:content";
+import Breadcrumb from "../../components/core/Breadcrumb.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
 
 const projects = await getCollection("projects");
 
@@ -27,6 +29,18 @@ const projectsByYear = projects.reduce(
 const groupedYears = Object.entries(projectsByYear).sort(
   ([yearA], [yearB]) => Number(yearB) - Number(yearA),
 );
+const tagMap = new Map<string, number>();
+
+for (const project of projects) {
+  for (const tags of project.data.tags || []) {
+    const [name] = tags.split("#");
+    const key = name;
+
+    tagMap.set(key, (tagMap.get(key) || 0) + 1);
+  }
+}
+
+const tags = [...tagMap.entries()].sort((a, b) => a[0].localeCompare(b[0]));
 ---
 
 <Core
@@ -36,28 +50,45 @@ const groupedYears = Object.entries(projectsByYear).sort(
   <section id="projects" class="p-16 lg:p-24 min-h-[75vh]">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
       <div class="lg:col-span-4 sticky lg:top-20 self-start">
-        <div
-          class="text-xs sm:text-sm font-mono text-gray-400 uppercase tracking-wider"
-        >
-          <span class="mx-1 opacity-60">/</span>
-          <a
-            href="/projects"
-            class="hover:text-white transition-colors duration-200"
-          >
-            projects
-          </a>
-        </div>
+        <Breadcrumb items={[{ label: "projects", href: "/projects" }]} />
         <h2
           class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-100"
         >
           Projects
         </h2>
         <p class="mt-6 text-base sm:text-lg text-gray-400 leading-relaxed">
-          A collection of projects I've worked on, showcasing my skills and
-          experience in various technologies and domains. Each project includes
-          a brief description, the technologies used, and the date it was
-          completed.
+          A collection of projects I've worked on across different technologies,
+          roles, and experiments.
         </p>
+        <div class="mt-8">
+          <h3
+            class="text-xs font-mono text-white/40 uppercase tracking-wider mb-3"
+          >
+            tags
+          </h3>
+
+          <div class="flex flex-wrap gap-2">
+            {
+              tags.map(([tag, count]) => (
+                <a
+                  href={`/projects/tags/${tag.toLocaleLowerCase()}`}
+                  class="px-2.5 py-1 text-xs sm:text-sm rounded-md
+          text-white/70
+          bg-white/5
+          border border-white/5
+
+          transition-all duration-300
+          hover:bg-white/10
+          hover:border-white/10
+          hover:text-white"
+                >
+                  {tag}
+                  <span class="text-white/40 ml-1">({count})</span>
+                </a>
+              ))
+            }
+          </div>
+        </div>
       </div>
 
       <!-- Posts Column -->
@@ -75,50 +106,7 @@ const groupedYears = Object.entries(projectsByYear).sort(
                 <div class="flex-1 h-px bg-gray-700/50" />
               </div>
               {projects.map((project) => (
-                <div class="group relative">
-                  <a
-                    href={`/projects/${project.slug}`}
-                    class="block relative p-4 sm:p-6 md:p-8 bg-gray-800/20 rounded-xl sm:rounded-2xl transition-all duration-300 backdrop-blur-sm hover:bg-gray-800/40"
-                  >
-                    <div class="space-y-2">
-                      <div class="space-y-2">
-                        <div class="flex justify-between items-start gap-4">
-                          <h3 class="text-xl sm:text-2xl font-bold text-gray-100 mt-1 group-hover:text-white transition-colors">
-                            {project.data.title}
-                          </h3>
-
-                          <span class="text-sm text-gray-300 font-mono">
-                            {new Date(project.data.date).toLocaleDateString(
-                              "en-US",
-                              {
-                                month: "short",
-                                day: "numeric",
-                                year: "numeric",
-                              },
-                            )}
-                            {" - "}
-                            {project.data.dateEnd
-                              ? new Date(
-                                  project.data.dateEnd,
-                                ).toLocaleDateString("en-US", {
-                                  month: "short",
-                                  day: "numeric",
-                                  year: "numeric",
-                                })
-                              : "OnGoing"}
-                          </span>
-                        </div>
-                      </div>
-
-                      <p class="text-base sm:text-lg text-gray-400 leading-relaxed">
-                        {project.body.includes("<!--card-->")
-                          ? project.body.split("<!--card-->")[0].trim()
-                          : project.body.slice(0, 125).trim() +
-                            (project.body.length > 125 ? "..." : "")}
-                      </p>
-                    </div>
-                  </a>
-                </div>
+                <ProjectCard project={project} />
               ))}
             </div>
           ))

@@ -1,6 +1,7 @@
 ---
 import Core from "../../layouts/Core.astro";
 import { getCollection } from "astro:content";
+import Breadcrumb from "../../components/core/Breadcrumb.astro";
 
 const blogPosts = await getCollection("blog");
 
@@ -36,17 +37,7 @@ const groupedYears = Object.entries(postsByYear).sort(
   <section id="blog" class="p-16 lg:p-24 min-h-[75vh]">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
       <div class="lg:col-span-4 sticky lg:top-20 self-start">
-        <div
-          class="text-xs sm:text-sm font-mono text-gray-400 uppercase tracking-wider"
-        >
-          <span class="mx-1 opacity-60">/</span>
-          <a
-            href="/blog"
-            class="hover:text-white transition-colors duration-200"
-          >
-            blog
-          </a>
-        </div>
+        <Breadcrumb items={[{ label: "blog", href: "/blog" }]} />
         <h2
           class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-100"
         >

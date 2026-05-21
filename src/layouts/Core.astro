@@ -15,7 +15,7 @@ import Footer from "../components/core/Footer.astro";
   <body class="bg-black text-white select-none" oncontextmenu="return false;">
     <div
       id="loading-screen"
-      class="opacity-0 fixed inset-0 z-20 flex items-center justify-center bg-black/60 backdrop-blur-xl duration-750"
+      class="opacity-0 fixed inset-0 z-20 flex items-center justify-center bg-black/80 backdrop-blur-xl"
     >
       <Image
         priority
@@ -41,11 +41,15 @@ import Footer from "../components/core/Footer.astro";
         loader?.remove();
       } else {
         loader?.classList.remove("opacity-0");
-        window.addEventListener("load", () => {
+        document.addEventListener("DOMContentLoaded", () => {
           setTimeout(() => {
-            loader?.classList.add("transition-opacity");
-            loader?.classList.add("opacity-0");
-            setTimeout(() => loader?.remove(), 500);
+            loader?.classList.add(
+              "transition-all",
+              "duration-750",
+              "opacity-0",
+            );
+            loader?.classList.remove("backdrop-blur-xl");
+            setTimeout(() => loader?.remove(), 750);
             sessionStorage.setItem("loaded", "true");
           }, 1500);
         });

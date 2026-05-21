@@ -1,5 +1,6 @@
 ---
 import Core from "../../layouts/Core.astro";
+import Breadcrumb from "../../components/core/Breadcrumb.astro";
 import { getCollection } from "astro:content";
 import "../../styles/global.css";
 
@@ -24,37 +25,20 @@ const { Content } = await post.render();
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
       <!-- Left Column (Title Block) -->
       <div class="lg:col-span-4 sticky lg:top-20 self-start">
-        <div
-          class="text-xs sm:text-sm font-mono text-gray-400 uppercase tracking-wider"
-        >
-          <span class="mx-1 opacity-60">/</span>
-          <a
-            href="/blog"
-            class="hover:text-white transition-colors duration-200"
-          >
-            blog
-          </a>
-
-          <span class="mx-1 opacity-60">/</span>
-
-          <a
-            href={`/blog/${new Date(post.data.date).getFullYear()}`}
-            class="hover:text-white transition-colors duration-200"
-          >
-            {new Date(post.data.date).getFullYear()}
-          </a>
-
-          <span class="mx-1 opacity-60">/</span>
-
-          <span class="">
-            {post.slug.split("/").pop()}
-          </span>
-        </div>
-        <h2
+        <Breadcrumb
+          items={[
+            { label: "blog", href: "/blog" },
+            {
+              label: new Date(post.data.date).getFullYear().toString(),
+              href: `/blog/${new Date(post.data.date).getFullYear()}`,
+            },
+            { label: post.slug.split("/").pop(), href: null },
+          ]}
+          <h2
           class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-100 leading-tight wrap-break-word"
         >
           {post.data.title}
-        </h2>
+        </Breadcrumb>
 
         <p class="mt-6 text-sm font-mono text-gray-300">
           {
