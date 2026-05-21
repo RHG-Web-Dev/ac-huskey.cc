@@ -7,40 +7,43 @@ const links = await response.json();
 ---
 
 <div id="hero" class="relative isolate overflow-hidden py-24 md:h-screen">
-  <!-- Gradient overlay -->
-  <svg
-    aria-hidden="true"
-    class="absolute inset-0 -z-10 size-full stroke-gray-200 mask-[radial-gradient(85%_85%_at_top_right,rgb(255,255,255,35%),transparent)]"
-  >
-    <defs>
-      <!-- <pattern
-				x="50%"
-				y={-1}
-				id="grid-pattern"
-				width={50}
-				height={50}
-				patternUnits="userSpaceOnUse"
-			>
-				<path d="M.5 200V.5H200" fill="none"></path>
-			</pattern> -->
-      <pattern
-        id="stripes"
-        width="40"
-        height="20"
-        patternUnits="userSpaceOnUse"
-      >
-        <path d="M0,10 Q10,0 20,10 T40,10" fill="none" stroke="currentColor"
-        ></path>
-      </pattern>
-    </defs>
-    <rect
-      fill="url(#stripes)"
-      width="100%"
-      height="100%"
-      stroke-width={0}
-      stroke-linejoin="round"
-      vector-effect="non-scaling-stroke"></rect>
-  </svg>
+  <div class="absolute inset-0 -z-10 overflow-hidden">
+    <!-- Dark gradient overlay for readability -->
+    <div
+      class="absolute inset-0 bg-linear-to-b from-black/40 via-black/20 to-transparent"
+    >
+    </div>
+
+    <!-- Grid -->
+    <svg class="absolute inset-0 h-full w-full opacity-10 rotate-5">
+      <defs>
+        <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+          <path
+            d="M 60 0 L 0 0 0 60"
+            fill="none"
+            stroke="white"
+            stroke-width="1"></path>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)"></rect>
+    </svg>
+
+    <!-- Glow orbs -->
+    <div
+      class="absolute -top-60 -left-60 h-150 w-150 rounded-full bg-blue-900/30 blur-3xl"
+    >
+    </div>
+
+    <div
+      class="absolute top-40 -right-40 h-80 w-80 rounded-full bg-purple-700/30 blur-2xl animate-pulse [animation-delay:1s]"
+    >
+    </div>
+
+    <div
+      class="absolute bottom-10 left-1/2 h-40 w-40 -translate-x-1/2 rounded-full bg-cyan-400/20 blur-xl animate-pulse [animation-delay:2s]"
+    >
+    </div>
+  </div>
   <div class="h-full mx-auto p-8 sm:p-12 md:p-24 flex items-center">
     <div class="space-y-4 sm:space-y-4">
       <Image
@@ -53,23 +56,50 @@ const links = await response.json();
       />
 
       <h1
-        class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl tracking-tight text-white font-semibold animate-fade-in animation-delay-200"
+        class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl tracking-tight text-white font-semibold animate-fade-in"
+        style="animation-delay: 0.2s;"
       >
-        {siteConfig.name}
+        Rusty Huskey
       </h1>
 
       <p
-        class="text-base sm:text-lg md:text-xl text-white/80 animate-fade-in animation-delay-400"
+        class="text-base sm:text-lg md:text-xl text-white/70 animate-fade-in"
+        style="animation-delay: 0.4s;"
       >
-        {siteConfig.title}
+        Computer IT Networking Graduate
       </p>
 
       <p
-        class="text-base sm:text-lg md:text-xl text-white/60 animate-fade-in animation-delay-600"
+        class="text-base sm:text-lg md:text-xl text-white/50 animate-fade-in"
+        style="animation-delay: 0.6s;"
       >
-        {siteConfig.location}
+        Tennessee, USA
       </p>
-      <div class="flex flex-wrap justify-left gap-6 mt-4">
+
+      <!-- Buttons -->
+      <div
+        class="flex flex-wrap gap-4 mt-6 animate-fade-in"
+        style="animation-delay: 0.8s;"
+      >
+        <!-- Primary: Contact -->
+        <a
+          href="#contact"
+          class="inline-flex items-center px-6 py-3 rounded-xl bg-white text-black font-semibold hover:bg-white/90 transition backdrop-blur-sm"
+        >
+          <Icon name="mdi:email" class="text-black/70 text-lg mr-2" />
+          Contact Me
+        </a>
+
+        <!-- Secondary: Projects -->
+        <a
+          href="#projects"
+          class="inline-flex items-center px-6 py-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 text-gray-100 transition backdrop-blur-sm"
+        >
+          <Icon name="mdi:folder-open" class="text-white/60 text-lg mr-2" />
+          View Projects
+        </a>
+      </div>
+      <!-- <div class="flex flex-wrap justify-left gap-6 mt-4">
         {
           Object.entries(links).map(([key, value], index) => {
             const link = value as {
@@ -91,37 +121,37 @@ const links = await response.json();
             );
           })
         }
-      </div>
+      </div> -->
     </div>
   </div>
-</div>
 
-<style>
-  @keyframes fadeIn {
-    from {
+  <style>
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
       opacity: 0;
-      transform: translateY(20px);
     }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+
+    .animation-delay-200 {
+      animation-delay: 0.2s;
     }
-  }
 
-  .animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
-    opacity: 0;
-  }
+    .animation-delay-400 {
+      animation-delay: 0.4s;
+    }
 
-  .animation-delay-200 {
-    animation-delay: 0.2s;
-  }
-
-  .animation-delay-400 {
-    animation-delay: 0.4s;
-  }
-
-  .animation-delay-600 {
-    animation-delay: 0.6s;
-  }
-</style>
+    .animation-delay-600 {
+      animation-delay: 0.6s;
+    }
+  </style>
+</div>

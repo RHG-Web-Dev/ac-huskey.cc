@@ -1,29 +1,16 @@
 ---
-import Meta from '../components/Meta.astro';
-import Background from '../components/Background.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
-import Projects from '../components/Projects.astro';
-import Footer from '../components/Footer.astro';
-import { siteConfig } from '../config';
-import '../styles/global.css';
-import Credentials from '../components/Credentials.astro';
+import Core from "../layouts/Core.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Projects from "../components/Projects.astro";
+import Credentials from "../components/Credentials.astro";
+import Contact from "../components/Contact.astro";
 ---
 
-<html lang="en">
-	<head>
-		<Meta />
-	</head>
-	<body class="relative bg-gray-900 text-gray-200">
-		<Background />
-		<Header />
-		<section>
-			<Hero />
-			<About />
-			<Credentials />
-			<Projects />
-		</section>
-		<Footer />
-	</body>
-</html>
+<Core>
+  <Hero />
+  <About />
+  <Credentials />
+  <Projects />
+  <Contact />
+</Core>

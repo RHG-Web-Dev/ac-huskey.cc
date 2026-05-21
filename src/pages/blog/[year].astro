@@ -1,127 +1,112 @@
 ---
-import Meta from '../../components/Meta.astro';
-import Background from '../../components/Background.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import { getCollection } from 'astro:content';
-import '../../styles/global.css';
+import Core from "../../layouts/Core.astro";
+import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
+  const posts = await getCollection("blog");
 
-	const years = [
-		...new Set(
-			posts.map((post) => new Date(post.data.date).getFullYear().toString()),
-		),
-	];
+  const years = [
+    ...new Set(
+      posts.map((post) => new Date(post.data.date).getFullYear().toString()),
+    ),
+  ];
 
-	return years.map((year) => ({
-		params: { year },
-		props: {
-			year,
-			posts: posts
-				.filter(
-					(post) => new Date(post.data.date).getFullYear().toString() === year,
-				)
-				.sort(
-					(a, b) =>
-						new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
-				),
-		},
-	}));
+  return years.map((year) => ({
+    params: { year },
+    props: {
+      year,
+      posts: posts
+        .filter(
+          (post) => new Date(post.data.date).getFullYear().toString() === year,
+        )
+        .sort(
+          (a, b) =>
+            new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+        ),
+    },
+  }));
 }
 
 const { year, posts } = Astro.props;
 ---
 
-<html lang="en">
-	<head>
-		<Meta title={`Blog - ${year}`} />
-	</head>
+<Core
+  title={`Blog - ${year} | Huskey.cc`}
+  description={`Posts published in ${year} on Huskey.cc's blog.`}
+>
+  <section class="p-16 lg:p-24 min-h-[75vh]">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+      <!-- Left Column -->
+      <div class="lg:col-span-4 sticky lg:top-20 self-start">
+        <div
+          class="text-xs sm:text-sm font-mono text-gray-400 uppercase tracking-wider"
+        >
+          <span class="mx-1 opacity-60">/</span>
+          <a
+            href="/blog"
+            class="hover:text-white transition-colors duration-200"
+          >
+            blog
+          </a>
 
-	<body class="relative bg-gray-900 text-gray-200">
-		<Background />
-		<Header />
+          <span class="mx-1 opacity-60">/</span>
 
-		<section class="p-16 lg:p-24 min-h-[75vh]">
-			<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-				<!-- Left Column -->
-				<div class="lg:col-span-4 sticky lg:top-20 self-start">
-					<div
-						class="text-xs sm:text-sm font-mono text-gray-400 uppercase tracking-wider"
-					>
-						<span class="mx-1 opacity-60">/</span>
-						<a
-							href="/blog"
-							class="hover:text-white transition-colors duration-200"
-						>
-							blog
-						</a>
+          <a
+            href={`/blog/${year}`}
+            class="hover:text-white transition-colors duration-200"
+          >
+            {year}
+          </a>
+        </div>
 
-						<span class="mx-1 opacity-60">/</span>
+        <h2
+          class="mt-4 text-4xl md:text-5xl xl:text-7xl font-bold text-gray-100"
+        >
+          {year}
+        </h2>
 
-						<a
-							href={`/blog/${year}`}
-							class="hover:text-white transition-colors duration-200"
-						>
-							{year}
-						</a>
-					</div>
+        <p class="mt-6 text-gray-400">
+          Posts published in {year}
+        </p>
+      </div>
 
-					<h2
-						class="mt-4 text-4xl md:text-5xl xl:text-7xl font-bold text-gray-100"
-					>
-						{year}
-					</h2>
+      <!-- Posts -->
+      <div class="lg:col-span-8 space-y-8">
+        {
+          posts.map((post, index) => (
+            <div class="group relative">
+              <a
+                href={`/blog/${post.slug}`}
+                class="block relative p-4 sm:p-6 md:p-8 bg-gray-800/20 rounded-xl sm:rounded-2xl transition-all duration-300 backdrop-blur-sm hover:bg-gray-800/40"
+              >
+                <div class="space-y-4">
+                  <div class="space-y-2">
+                    <div class="flex justify-between items-start gap-4">
+                      <h3 class="text-xl sm:text-2xl font-bold text-gray-100 mt-1 group-hover:text-white transition-colors">
+                        {post.data.title}
+                      </h3>
 
-					<p class="mt-6 text-gray-400">
-						Posts published in {year}
-					</p>
-				</div>
+                      <span class="text-sm text-gray-300 font-mono whitespace-nowrap">
+                        {new Date(post.data.date).toLocaleDateString("en-US", {
+                          month: "short",
+                          day: "numeric",
+                        })}
+                      </span>
+                    </div>
+                  </div>
 
-				<!-- Posts -->
-				<div class="lg:col-span-8 space-y-8">
-					{
-						posts.map((post, index) => (
-							<div class="group relative">
-								<a
-									href={`/blog/${post.slug}`}
-									class="block relative p-4 sm:p-6 md:p-8 bg-gray-800/20 rounded-xl sm:rounded-2xl transition-all duration-300 backdrop-blur-sm hover:bg-gray-800/40"
-								>
-									<div class="space-y-4">
-										<div class="space-y-2">
-											<div class="flex justify-between items-start gap-4">
-												<h3 class="text-xl sm:text-2xl font-bold text-gray-100 mt-1 group-hover:text-white transition-colors">
-													{post.data.title}
-												</h3>
-
-												<span class="text-sm text-gray-300 font-mono whitespace-nowrap">
-													{new Date(post.data.date).toLocaleDateString(
-														'en-US',
-														{
-															month: 'short',
-															day: 'numeric',
-														},
-													)}
-												</span>
-											</div>
-										</div>
-
-										<p class="text-base sm:text-lg text-gray-400 leading-relaxed">
-											{post.body
-												.replace('/[#_*>\-\n`]/g', '')
-												.slice(0, 125)
-												.trim() + (post.body.length > 125 ? '...' : '')}
-										</p>
-									</div>
-								</a>
-							</div>
-						))
-					}
-				</div>
-			</div>
-		</section>
-
-		<Footer />
-	</body>
-</html>
+                  <p class="text-base sm:text-lg text-gray-400 leading-relaxed">
+                    {post.body
+                      .replace("/[#_*>\-\n`]/g", "")
+                      .slice(0, 125)
+                      .trim() + (post.body.length > 125 ? "..." : "")}
+                  </p>
+                </div>
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Core>

@@ -1,0 +1,55 @@
+---
+const props = Astro.props;
+import "../styles/global.css";
+import { Image } from "astro:assets";
+import Meta from "../components/core/Meta.astro";
+import Header from "../components/core/Header.astro";
+import Background from "../components/core/Background.astro";
+import Footer from "../components/core/Footer.astro";
+---
+
+<html lang="en" class="dark">
+  <head>
+    <Meta {...props} />
+  </head>
+  <body class="bg-black text-white select-none" oncontextmenu="return false;">
+    <div
+      id="loading-screen"
+      class="opacity-0 fixed inset-0 z-20 flex items-center justify-center bg-black/60 backdrop-blur-xl duration-750"
+    >
+      <Image
+        priority
+        height="1080"
+        width="1080"
+        src="/img/favicon.png"
+        alt="Loading"
+        class="w-auto h-2/8 animate-pulse"
+      />
+    </div>
+
+    <main id="app" class="">
+      <Background />
+      <Header />
+      <slot />
+      <Footer />
+    </main>
+    <script>
+      const loader = document.getElementById("loading-screen");
+      const hasLoaded = sessionStorage.getItem("loaded");
+
+      if (hasLoaded) {
+        loader?.remove();
+      } else {
+        loader?.classList.remove("opacity-0");
+        window.addEventListener("load", () => {
+          setTimeout(() => {
+            loader?.classList.add("transition-opacity");
+            loader?.classList.add("opacity-0");
+            setTimeout(() => loader?.remove(), 500);
+            sessionStorage.setItem("loaded", "true");
+          }, 1500);
+        });
+      }
+    </script>
+  </body>
+</html>

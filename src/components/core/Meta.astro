@@ -1,12 +1,11 @@
 ---
-import { siteConfig } from '../config';
 interface Props {
-	title?: string;
-	description?: string;
-	image?: string;
+  title?: string;
+  description?: string;
+  image?: string;
 }
 
-const { title = siteConfig.name, image = '/img/favicon.png' } = Astro.props;
+const { title = "Rusty Huskey", image = "/img/favicon.png" } = Astro.props;
 const url = new URL(Astro.url.pathname, Astro.site).toString();
 ---
 
@@ -44,6 +43,6 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-	href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap"
-	rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+  rel="stylesheet"
 />

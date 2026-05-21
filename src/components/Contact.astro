@@ -1,0 +1,50 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<section id="contact" class="px-6 py-16 sm:px-10 md:px-16 lg:px-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+      <!-- Title -->
+      <div class="lg:col-span-4">
+        <h2
+          class="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-semibold tracking-tight text-white"
+        >
+          Contact Me
+        </h2>
+
+        <p class="mt-4 text-white/50 text-base sm:text-lg leading-relaxed">
+          Let’s Talk Business.
+        </p>
+      </div>
+
+      <!-- Content -->
+      <div class="lg:col-span-8 space-y-8">
+        <p class="text-lg sm:text-xl md:text-2xl leading-relaxed text-white/70">
+          If you’ve made it this far, feel free to reach out. I’m always open to
+          connecting with fellow IT professionals, sharing knowledge, and
+          exploring new opportunities.
+        </p>
+
+        <!-- Email Card -->
+        <div
+          class="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm flex items-center justify-between"
+        >
+          <div class="flex items-center gap-3">
+            <Icon name="mdi:email" class="text-white/60 text-xl" />
+            <span class="text-white/80 text-base sm:text-lg">
+              rusty@huskey.cc
+            </span>
+          </div>
+
+          <a
+            href="mailto:rusty@huskey.cc?subject=Lets%20Talk%20Business&body=Hi%20Rusty%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20wanted%20to%20reach%20out.%0A%0A[Message]%0A%0ABest%2C%0A[Name]"
+            class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm sm:text-base transition"
+          >
+            Send Email
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
