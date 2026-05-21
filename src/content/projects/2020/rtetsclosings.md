@@ -10,7 +10,7 @@ tech: [
 		"Visual Studio Code#007ACC"
 	]
 title: "RTETS Closings"
-tags: ["Twitter", "Service", "Archived"]
+tags: ["Twitter Bot","Archived"]
 date: "2020-02-01T00:00:00"
 dateEnd: "2023-03-12T00:00:00"
 ---
@@ -20,6 +20,8 @@ Twitter bot that provided real-time updates on school closures and holiday break
 School closures were then tweeted out to followers, providing a valuable service to the community during inclement weather and other emergencies. 
 <br><br>
 The project was a significant learning experience, teaching me how to work with APIs, manage data, and create engaging user experiences through a social media platform.
+<br><br>
+The service is now archived as twitter's apis are no longer free to use, but it was a fun and rewarding project that helped me grow as a developer and provided a useful service to the community during its active years.
 <br><br>
 
 <div class="rounded-xl overflow-hidden ">

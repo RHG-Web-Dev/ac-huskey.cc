@@ -9,7 +9,7 @@ tech: [
 		"VMware#607078"
 	]
 title: "Hopper Linux Server"
-tags: ["Capstone", "Linux", "Server"]
+tags: ["Capstone", "Linux", "Virtualization"]
 location: "Morristown, TN"
 date: "2023-08-20T00:00:00"
 dateEnd: "2023-12-05T00:00:00"
