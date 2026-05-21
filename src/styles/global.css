@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
 body {
-  font-family: 'Fira Code', monospace;
+  font-family: "Manrope", sans-serif;
+  font-style: normal;
 }
 
 html {
-	scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
