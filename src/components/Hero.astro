@@ -1,5 +1,4 @@
 ---
-import { siteConfig } from "../config";
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 const response = await fetch("https://rhgdev.in/@linkapi");
@@ -122,6 +121,10 @@ const links = await response.json();
           })
         }
       </div> -->
+      <!-- Bouncing arrow to prompt scrolling -->
+      <div class="absolute bottom-3 left-1/2 -translate-x-1/2 animate-bounce">
+        <Icon name="mdi:chevron-down" class="text-white/70 text-3xl" />
+      </div>
     </div>
   </div>
 

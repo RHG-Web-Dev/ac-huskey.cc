@@ -1,0 +1,32 @@
+---
+const { items = [] } = Astro.props;
+/**
+ * items format:
+ * [
+ *   { label: "projects", href: "/projects" },
+ *   { label: "tags", href: "/projects/tags" },
+ *   { label: "react", href: null }
+ * ]
+ */
+---
+
+<div
+  class="text-md font-mono text-white/50 uppercase tracking-wider flex items-center flex-wrap gap-2"
+>
+  <span class="scale-150">/</span>
+  {
+    items.map((item: { label: string; href: string | null }, index: number) => (
+      <>
+        {item.href && items.length !== index + 1 ? (
+          <a href={item.href} class="hover:text-white/80 transition-colors">
+            {item.label}
+          </a>
+        ) : (
+          <span class="text-white/90">{item.label}</span>
+        )}
+
+        {index < items.length - 1 && <span class="scale-150">/</span>}
+      </>
+    ))
+  }
+</div>

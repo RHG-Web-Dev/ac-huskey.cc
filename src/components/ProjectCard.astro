@@ -1,0 +1,122 @@
+---
+import { Icon } from "astro-icon/components";
+
+const { project } = Astro.props;
+const isClickable = !!project.data.url;
+---
+
+<a
+  href={`/projects/${project.slug}`}
+  class="group relative block
+    p-4 sm:p-6 md:p-8
+    bg-gray-800/20
+    border border-white/5
+    rounded-xl sm:rounded-2xl
+    backdrop-blur-sm
+    transition-all duration-300 ease-out
+    hover:bg-gray-800/40
+    hover:border-white/10
+    hover:-translate-y-1
+    hover:shadow-lg
+    hover:shadow-black/20"
+>
+  <!-- Header -->
+  <div class="space-y-2">
+    <div class="flex justify-between items-start gap-4">
+      <!-- Title -->
+      <div>
+        <div class="flex items-center gap-2">
+          <h3 class="text-xl sm:text-2xl font-bold text-gray-100 mt-1">
+            {project.data.title}
+          </h3>
+
+          <!-- Arrow -->
+          <Icon
+            name="mdi:arrow-top-right"
+            class="w-4 h-4 text-white/0
+              -translate-x-1 translate-y-1
+              transition-all duration-300
+              group-hover:text-white/40
+              group-hover:translate-x-0
+              group-hover:translate-y-0"
+          />
+        </div>
+
+        <h4 class="text-base font-normal text-gray-300">
+          {project.data.tags?.[0]}
+        </h4>
+      </div>
+
+      <!-- Meta -->
+      <div class="text-right">
+        {
+          project.data.location && (
+            <span class="text-sm text-gray-300 font-medium whitespace-nowrap">
+              {project.data.location}
+            </span>
+          )
+        }
+
+        <div class="text-sm text-gray-400 font-mono">
+          {
+            new Date(project.data.date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "short",
+            })
+          }
+          —
+          {
+            project.data.dateEnd
+              ? new Date(project.data.dateEnd).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "short",
+                })
+              : "Present"
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Description -->
+  <div class="mt-4 text-base sm:text-lg text-white/50 leading-relaxed">
+    {
+      project.body.includes("<!--card-->")
+        ? project.body.split("<!--card-->")[0].trim()
+        : project.body.slice(0, 125).trim() +
+          (project.body.length > 125 ? "..." : "")
+    }
+  </div>
+
+  <!-- Tech -->
+  {
+    project.data.tech?.length > 0 && (
+      <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-5">
+        {project.data.tech
+          .sort((a: any, b: any) =>
+            a
+              .split("#")[0]
+              .toLowerCase()
+              .localeCompare(b.split("#")[0].toLowerCase()),
+          )
+          .map((tech: string) => {
+            const [label, hex] = tech.split("#");
+            const color = hex ? `#${hex}` : "#111827";
+
+            return (
+              <span
+                class="px-2.5 sm:px-3 py-1 sm:py-1.5
+                text-white/80
+                rounded-md sm:rounded-lg
+                text-xs sm:text-sm
+                font-medium"
+                style={{ backgroundColor: `${color}35` }}
+              >
+                {label}
+              </span>
+            );
+          })}
+      </div>
+    )
+  }
+</a>
