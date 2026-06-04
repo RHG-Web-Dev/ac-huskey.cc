@@ -1,0 +1,134 @@
+---
+type NoticeType = "theme" | "success" | "warning" | "danger";
+
+interface Notice {
+  icon: string;
+  text: string;
+  type: NoticeType;
+
+  link?: string;
+  linkText?: string;
+
+  startDate?: string;
+  endDate?: string;
+
+  dismissible?: boolean;
+}
+
+const notices: Notice[] = [
+  {
+    icon: "⛺",
+    text: "Out of office from June 28 to July 4. Will have limited access to email and may respond slowly.",
+    type: "warning",
+    startDate: "2026-06-28",
+    endDate: "2026-07-04",
+  },
+  {
+    icon: "📬",
+    text: "Available for IT, Help Desk, and Networking opportunities",
+    type: "theme",
+    link: "https://resume.huskey.cc",
+    linkText: "View Resume →",
+  },
+
+  {
+    icon: "🚧",
+    text: "Website redesign in progress",
+    type: "warning",
+    startDate: "2026-06-15",
+  },
+];
+
+const now = new Date();
+
+const styles: Record<NoticeType, string> = {
+  theme: "bg-cyan-500/15 border-cyan-400/20 text-cyan-300",
+  success: "bg-green-500/15 border-green-400/20 text-green-300",
+  warning: "bg-yellow-500/15 border-yellow-400/20 text-yellow-300",
+  danger: "bg-red-500/15 border-red-400/20 text-red-300",
+};
+
+const activeNotice = notices.find((n) => {
+  const startOk = !n.startDate || now >= new Date(n.startDate);
+  const endOk = !n.endDate || now <= new Date(n.endDate);
+  return startOk && endOk;
+});
+---
+
+{
+  activeNotice && (
+    <div
+      id="site-notice"
+      class="overflow-hidden transition-[height,opacity,transform] duration-500 ease-in-out"
+      style="height: 0; opacity: 0; transform: translateY(-12px);"
+    >
+      <div
+        class={`flex items-center justify-between px-4 py-2 text-sm border backdrop-blur-xl rounded-b-2xl ${styles[activeNotice.type]}`}
+      >
+        <div class="flex items-center gap-2 min-w-0">
+          <span>{activeNotice.icon}</span>
+
+          <span>{activeNotice.text}</span>
+
+          {activeNotice.link && (
+            <a
+              href={activeNotice.link}
+              class="underline font-medium hover:opacity-80"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {activeNotice.linkText}
+            </a>
+          )}
+        </div>
+
+        {activeNotice.dismissible !== false && (
+          <button
+            id="notice-close"
+            class="ml-4 opacity-70 hover:opacity-100"
+            aria-label="Dismiss notice"
+          >
+            ✕
+          </button>
+        )}
+      </div>
+    </div>
+  )
+}
+
+<script>
+  const notice = document.getElementById("site-notice");
+  const close = document.getElementById("notice-close");
+
+  // Slide IN on load
+  if (notice) {
+    const height = notice.scrollHeight;
+
+    requestAnimationFrame(() => {
+      notice.style.height = height + "px";
+      notice.style.opacity = "1";
+      notice.style.transform = "translateY(0)";
+    });
+
+    setTimeout(() => {
+      notice.style.height = "auto";
+    }, 500);
+  }
+
+  // Slide OUT on dismiss
+  close?.addEventListener("click", () => {
+    if (!notice) return;
+
+    notice.style.height = notice.scrollHeight + "px";
+
+    requestAnimationFrame(() => {
+      notice.style.height = "0px";
+      notice.style.opacity = "0";
+      notice.style.transform = "translateY(-12px)";
+    });
+
+    setTimeout(() => {
+      notice.remove();
+    }, 500);
+  });
+</script>

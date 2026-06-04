@@ -1,7 +1,8 @@
 ---
 import { Image } from "astro:assets";
+import Banner from "./Banner.astro";
 
-let navBar = [
+const navBar = [
   { name: "About", link: "/#about" },
   { name: "Credentials", link: "/#credentials" },
   { name: "Projects", link: "/#projects" },
@@ -12,8 +13,9 @@ let navBar = [
 
 <header
   id="header"
-  class="fixed top-0 left-3 right-3 z-10 h-16 transition-all duration-500 rounded-b-2xl"
+  class="fixed top-0 left-3 right-3 z-10 transition-all duration-500 rounded-b-2xl"
 >
+  <Banner />
   <nav class="mx-auto px-6 py-4 flex items-center">
     <!-- Logo -->
     <a href="/" class="flex items-center">
