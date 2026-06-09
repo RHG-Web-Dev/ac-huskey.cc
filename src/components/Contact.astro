@@ -21,9 +21,8 @@ import { Icon } from "astro-icon/components";
       <!-- Content -->
       <div class="lg:col-span-8 space-y-8">
         <p class="text-lg sm:text-xl md:text-2xl leading-relaxed text-white/70">
-          If you’ve made it this far, feel free to reach out. I’m always open to
-          connecting with fellow IT professionals, sharing knowledge, and
-          exploring new opportunities.
+          I'm always open to connecting with fellow IT professionals, discussing
+          technology, and exploring new opportunities.
         </p>
 
         <!-- Email Card -->
@@ -32,9 +31,24 @@ import { Icon } from "astro-icon/components";
         >
           <div class="flex items-center gap-3">
             <Icon name="mdi:email" class="text-white/60 text-xl" />
-            <span class="text-white/80 text-base sm:text-lg">
+            <span class="text-white/80 text-base sm:text-lg select-text">
               rusty@huskey.cc
             </span>
+            <button
+              id="copy-email"
+              class="hover:text-white/80 text-white/20 transition cursor-pointer"
+              title="Copy email"
+            >
+              <span id="copy-state">
+                <Icon id="copy-icon" name="mdi:content-copy" />
+
+                <Icon
+                  id="check-icon"
+                  name="mdi:check-bold"
+                  class="hidden text-green-400"
+                />
+              </span>
+            </button>
           </div>
 
           <a
@@ -48,3 +62,21 @@ import { Icon } from "astro-icon/components";
     </div>
   </div>
 </section>
+
+<script>
+  const copyBtn = document.getElementById("copy-email");
+  const copyIcon = document.getElementById("copy-icon");
+  const checkIcon = document.getElementById("check-icon");
+
+  copyBtn?.addEventListener("click", async () => {
+    await navigator.clipboard.writeText("rusty@huskey.cc");
+
+    copyIcon?.classList.add("hidden");
+    checkIcon?.classList.remove("hidden");
+
+    setTimeout(() => {
+      checkIcon?.classList.add("hidden");
+      copyIcon?.classList.remove("hidden");
+    }, 2000);
+  });
+</script>
