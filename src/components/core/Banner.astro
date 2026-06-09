@@ -100,8 +100,13 @@ const activeNotice = notices.find((n) => {
   const notice = document.getElementById("site-notice");
   const close = document.getElementById("notice-close");
 
-  // Slide IN on load
-  if (notice) {
+  const STORAGE_KEY = "banner-dismissed";
+
+  // Hide if already dismissed in this tab
+  if (sessionStorage.getItem(STORAGE_KEY) === "true") {
+    notice?.remove();
+  } else if (notice) {
+    // Slide IN
     const height = notice.scrollHeight;
 
     requestAnimationFrame(() => {
@@ -115,9 +120,11 @@ const activeNotice = notices.find((n) => {
     }, 500);
   }
 
-  // Slide OUT on dismiss
+  // Slide OUT
   close?.addEventListener("click", () => {
     if (!notice) return;
+
+    sessionStorage.setItem(STORAGE_KEY, "true");
 
     notice.style.height = notice.scrollHeight + "px";
 
