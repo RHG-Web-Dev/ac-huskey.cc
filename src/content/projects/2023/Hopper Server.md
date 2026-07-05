@@ -9,12 +9,14 @@ tech: [
 		"VMware#607078"
 	]
 title: "Hopper Linux Server"
-tags: ["Capstone", "Linux", "Virtualization"]
+tags: ["Capstone", "Linux", "Virtualization", "Documentation"]
 location: "Morristown, TN"
 date: "2023-08-20T00:00:00"
 dateEnd: "2023-12-05T00:00:00"
 ---
+
 For my Capstone course I was tasked with rebuilding the main linux server a Professor used for his classes. I chose to use AlmaLinux as the base OS, and I set up Apache, MariaDB, and SQL Server to host various web applications and databases for the students to use.
+
 <!--card-->
 <br>
 I also implemented Shell scripting to automate server maintenance tasks and deployed an ASP.NET application to provide a user-friendly interface for managing the server. The project was built and tested in a virtual machine environment using VMware, and I authored detailed technical documentation for deployment and maintenance reference.
