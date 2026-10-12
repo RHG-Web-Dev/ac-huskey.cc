@@ -3,6 +3,11 @@ import { Icon } from "astro-icon/components";
 
 const { project } = Astro.props;
 const isClickable = !!project.data.url;
+const cardMarker = /<!--card-->|\{\s*\/\*\s*card\s*\*\/\s*\}/;
+const projectBody = project.body.replace(/^import\s+.*(?:;\s*)?$/gm, "").trim();
+const cardDescription = cardMarker.test(projectBody)
+  ? projectBody.split(cardMarker)[0].trim()
+  : projectBody.slice(0, 125).trim() + (projectBody.length > 125 ? "..." : "");
 ---
 
 <a
@@ -80,12 +85,7 @@ const isClickable = !!project.data.url;
 
   <!-- Description -->
   <div class="mt-4 text-base sm:text-lg text-white/50 leading-relaxed">
-    {
-      project.body.includes("<!--card-->")
-        ? project.body.split("<!--card-->")[0].trim()
-        : project.body.slice(0, 125).trim() +
-          (project.body.length > 125 ? "..." : "")
-    }
+    {cardDescription}
   </div>
 
   <!-- Tech -->

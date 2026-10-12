@@ -1,0 +1,72 @@
+---
+interface Props {
+  src: string;
+  title?: string;
+  href?: string;
+  height?: string;
+}
+
+const {
+  src,
+  title = "Embedded website",
+  href = src,
+  height = "32rem",
+} = Astro.props;
+const hostname = new URL(src).hostname;
+const isKnownBlockedHost =
+  hostname === "github.com" || hostname.endsWith(".github.com");
+---
+
+<figure
+  data-website-embed
+  class="not-prose my-10 overflow-hidden rounded-xl border border-white/10 bg-black/30 shadow-2xl shadow-black/30"
+>
+  <div
+    class="flex items-center gap-3 border-b border-white/10 bg-black/30 px-4 py-2.5"
+  >
+    <!-- <div
+      class="flex items-center gap-2 text-[0.65rem] font-medium tracking-wider text-white/40"
+    >
+      <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+      LIVE PREVIEW
+    </div> -->
+    <div
+      class="min-w-0 flex-1 truncate rounded-md border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/50"
+    >
+      {href}
+    </div>
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={`Open ${title} in a new tab`}
+      class="shrink-0 text-white/50 transition-colors hover:text-white"
+    >
+      <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+
+  {
+    !isKnownBlockedHost && (
+      <div class="relative bg-black" style={`height: ${height}`}>
+        <iframe
+          src={src}
+          title={title}
+          class="h-full w-full border-0"
+          sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+        />
+
+        <div class="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center bg-linear-to-t from-black/40 to-transparent p-4 opacity-0 transition-opacity focus-within:opacity-100 hover:opacity-100">
+          <a
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            class="pointer-events-auto rounded-md bg-black/75 px-3 py-2 text-sm text-white backdrop-blur-sm"
+          >
+            Open live site
+          </a>
+        </div>
+      </div>
+    )
+  }
+</figure>
