@@ -7,7 +7,7 @@ const navBar = [
   { name: "Credentials", link: "/#credentials" },
   { name: "Projects", link: "/#projects" },
   { name: "Contact", link: "/#contact" },
-  { name: "Resume", link: "https://resume.huskey.cc" },
+  { name: "Resume", link: "https://resume.huskey.cc", button: true },
 ];
 ---
 
@@ -45,15 +45,15 @@ const navBar = [
       }
     </ul>
 
-    <!-- Right Side Button -->
-    <a
+    <!-- Desktop CTA -->
+    <!-- <a
       href={navBar[navBar.length - 1].link}
       class="hidden md:inline-flex ml-auto px-4 py-2 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 text-gray-100 transition backdrop-blur-sm"
       target="_blank"
       rel="noopener noreferrer"
     >
       {navBar[navBar.length - 1].name}
-    </a>
+    </a> -->
 
     <!-- Mobile Hamburger -->
     <button
@@ -91,7 +91,7 @@ const navBar = [
       }
 
       <!-- Mobile CTA -->
-      <li class="pt-2">
+      <!-- <li class="pt-2">
         <a
           href={navBar[navBar.length - 1].link}
           class="block text-center rounded-xl px-4 py-3 bg-white/10 hover:bg-white/20 text-white transition"
@@ -100,7 +100,7 @@ const navBar = [
         >
           {navBar[navBar.length - 1].name}
         </a>
-      </li>
+      </li> -->
     </ul>
   </div>
 </header>
